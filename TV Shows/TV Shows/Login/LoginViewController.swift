@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class LoginViewController: UIViewController {
     var buttonPressed = 1
@@ -16,6 +17,11 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        SVProgressHUD.show()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            SVProgressHUD.dismiss()
+        }
+        
         ActivityIndicator.startAnimating()
         Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { (_) in
             self.ActivityIndicator.stopAnimating()

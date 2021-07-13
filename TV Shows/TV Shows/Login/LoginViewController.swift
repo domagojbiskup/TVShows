@@ -9,10 +9,11 @@ import UIKit
 import SVProgressHUD
 
 class LoginViewController: UIViewController {
-    var buttonPressed = 1
+    @IBOutlet private weak var clickCounterLabel: UILabel!
+    @IBOutlet private weak var activityIndicatorView: UIActivityIndicatorView!
+    
+    private var buttonPressed = 1
 
-    @IBOutlet weak var clickCounterLabel: UILabel!
-    @IBOutlet weak var ActivityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()

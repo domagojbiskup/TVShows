@@ -24,8 +24,8 @@ class LoginViewController: UIViewController {
         }
         
         ActivityIndicator.startAnimating()
-        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { (_) in
-            self.ActivityIndicator.stopAnimating()
+        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { [weak self] _ in
+            self?.ActivityIndicator.stopAnimating()
         }
     }
 

@@ -52,7 +52,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="ActivityIndicator" destination="gV4-8b-wrj" id="aYd-ye-qUD"/>
+                        <outlet property="activityIndicator" destination="gV4-8b-wrj" id="HoF-9W-0kk"/>
                         <outlet property="clickCounterLabel" destination="evu-vz-WZj" id="K7W-Dy-ajN"/>
                     </connections>
                 </viewController>

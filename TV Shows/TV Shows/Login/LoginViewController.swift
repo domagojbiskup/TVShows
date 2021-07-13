@@ -9,11 +9,12 @@ import UIKit
 import SVProgressHUD
 
 class LoginViewController: UIViewController {
+    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var clickCounterLabel: UILabel!
     @IBOutlet private weak var activityIndicatorView: UIActivityIndicatorView!
     
-    private var buttonPressed = 1
-
+    private var buttonTapCount = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,14 +24,14 @@ class LoginViewController: UIViewController {
             SVProgressHUD.dismiss()
         }
         
-        ActivityIndicator.startAnimating()
+        activityIndicator.startAnimating()
         Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { [weak self] _ in
-            self?.ActivityIndicator.stopAnimating()
+            self?.activityIndicator.stopAnimating()
         }
     }
 
     @IBAction func plusOneButton(_ sender: Any) {
-        clickCounterLabel.text = "\(buttonPressed)"
-        buttonPressed += 1
+        clickCounterLabel.text = "\(buttonTapCount)"
+        buttonTapCount += 1
     }
 }

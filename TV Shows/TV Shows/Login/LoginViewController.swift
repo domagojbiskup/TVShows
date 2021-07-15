@@ -10,7 +10,7 @@ import SVProgressHUD
 
 class LoginViewController: UIViewController {
     
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+//    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var clickCounterLabel: UILabel!
     @IBOutlet private weak var activityIndicatorView: UIActivityIndicatorView!
     
@@ -24,10 +24,10 @@ class LoginViewController: UIViewController {
             SVProgressHUD.dismiss()
         }
         
-        activityIndicator.startAnimating()
-        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { [weak self] _ in
-            self?.activityIndicator.stopAnimating()
-        }
+//        activityIndicator.startAnimating()
+//        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { [weak self] _ in
+//            self?.activityIndicator.stopAnimating()
+//        }
     }
 
     @IBAction func plusOneButton(_ sender: Any) {

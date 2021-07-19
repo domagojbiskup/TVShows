@@ -12,11 +12,11 @@ import Alamofire
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
-         
+/*
         let params: [String: String] =  [
             "email": "dbiskup@foi.hr",
             "password": "",
@@ -53,6 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     print("Error: \(error)")
                 }
             })
+*/
 */
         return true
     }

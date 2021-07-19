@@ -4,7 +4,9 @@
 //
 //  Created by Infinum Infinum on 14.07.2021..
 //
-
+/*
+ import Foundation
+ 
 struct UserResponse: Decodable {
     let user: User
 }
@@ -20,4 +22,4 @@ struct User: Decodable {
         case imageUrl = "image_url"
     }
 }
-
+*/

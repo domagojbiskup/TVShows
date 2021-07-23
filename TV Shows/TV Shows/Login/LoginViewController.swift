@@ -21,10 +21,6 @@ class LoginViewController: UIViewController {
         loginButton.layer.cornerRadius = 5
         loginButton.layer.masksToBounds = true
         
-//        SVProgressHUD.show()
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-//            SVProgressHUD.dismiss()
-//        }
     }
 
     @IBAction func rememberMeButton(_ sender: UIButton) {

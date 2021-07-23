@@ -87,6 +87,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gN6-sb-5ty">
                                                 <rect key="frame" x="321" y="348" width="24" height="24"/>
                                                 <state key="normal" image="ic-visible"/>
+                                                <connections>
+                                                    <action selector="passwordEyeButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="ekP-9v-NwK"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="01I-XS-hrV">
                                                 <rect key="frame" x="20" y="400" width="142" height="24"/>
@@ -178,10 +181,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="mZ7-hC-xlu"/>
                     <connections>
-                        <outlet property="checkBox" destination="01I-XS-hrV" id="09W-wI-uGz"/>
+                        <outlet property="checkBoxRememberMeButton" destination="01I-XS-hrV" id="09W-wI-uGz"/>
                         <outlet property="emailTextField" destination="vc7-uK-YuC" id="uOS-Bz-3YZ"/>
                         <outlet property="loginButton" destination="5l5-y1-Sww" id="oaf-t4-90F"/>
-                        <outlet property="passwordEye" destination="gN6-sb-5ty" id="K2n-Zk-e2K"/>
+                        <outlet property="passwordEyeButton" destination="gN6-sb-5ty" id="K2n-Zk-e2K"/>
                         <outlet property="passwordTextField" destination="ePv-2a-Ma9" id="S6a-82-oR0"/>
                     </connections>
                 </viewController>

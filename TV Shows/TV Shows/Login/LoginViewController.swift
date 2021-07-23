@@ -10,7 +10,6 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
-//    @IBOutlet private weak var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var checkBox: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     
@@ -40,4 +39,3 @@ class LoginViewController: UIViewController {
         }
     }
 }
-

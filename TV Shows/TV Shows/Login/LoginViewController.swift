@@ -13,6 +13,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var passwordEye: UIButton!
     @IBOutlet weak var checkBox: UIButton!
     @IBOutlet weak var loginButton: UIButton!
 
@@ -56,7 +57,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
         /// Email checker
         if emailTextField.text == "" {
-            emailTextField.placeholder = "Enter your email!"
+            emailTextField.placeholder = "This field cannot be empty!"
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 self.emailTextField.placeholder = "Email"
             }
@@ -66,7 +67,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         if passwordTextField.text == "" {
             passwordTextField.placeholder = "This field cannot be empty!"
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                self.passwordTextField.placeholder = "New password"
+                self.passwordTextField.placeholder = "Password"
             }
         }
 

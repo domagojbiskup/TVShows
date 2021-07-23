@@ -25,12 +25,11 @@ class LoginViewController: UIViewController {
 
     @IBAction func rememberMeButton(_ sender: UIButton) {
                 
-        if !checked {
-            checkBox.setImage(UIImage(named: "ic-checkbox-selected"), for: .normal)
-            checked = true
+        if checked {
+             checkBox.setImage(UIImage(named: "ic-checkbox-unselected"), for: .normal)
         } else {
-            checkBox.setImage(UIImage(named: "ic-checkbox-unselected"), for: .normal)
-            checked = false
+            checkBox.setImage(UIImage(named: "ic-checkbox-selected"), for: .normal)
         }
+        checked.toogle()
     }
 }

@@ -8,17 +8,26 @@
 import Foundation
 
 struct Users: Codable {
-    let Users: User
+    let user: User
 }
 
 struct User: Codable {
+    let id: String
     let email: String
-    let password: String
-    let passwordConfirmation: String
+    let imageUrl: String?
+//    let password: String
+//    let passwordConfirmation: String
     
     enum CodingKeys: String, CodingKey {
+        case id
         case email
-        case password
-        case passwordConfirmation = "password_confirmation"
+        case imageUrl = "image_url"
+//        case password
+//        case passwordConfirmation = "password_confirmation"
     }
 }
+
+//struct LoginData: Codable {
+//    let token: String
+//}
+

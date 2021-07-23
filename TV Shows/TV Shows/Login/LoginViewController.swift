@@ -9,8 +9,8 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
-    @IBOutlet weak var checkBox: UIButton!
-    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet private weak var checkBox: UIButton!
+    @IBOutlet private weak var loginButton: UIButton!
     
     private var checked = false
 

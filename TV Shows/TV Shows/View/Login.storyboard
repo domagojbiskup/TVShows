@@ -51,7 +51,7 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vc7-uK-YuC">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="domagoj.biskup@mail.com" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vc7-uK-YuC">
                                                 <rect key="frame" x="25" y="297" width="325" height="22"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -71,7 +71,7 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ePv-2a-Ma9">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1234567" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ePv-2a-Ma9">
                                                 <rect key="frame" x="25" y="349" width="325" height="21"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -186,11 +186,22 @@
                         <outlet property="loginButton" destination="5l5-y1-Sww" id="oaf-t4-90F"/>
                         <outlet property="passwordEyeButton" destination="gN6-sb-5ty" id="K2n-Zk-e2K"/>
                         <outlet property="passwordTextField" destination="ePv-2a-Ma9" id="S6a-82-oR0"/>
+                        <segue destination="T2a-4l-tYP" kind="presentation" identifier="goToShows" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="365-gR-tkd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1007.2" y="346.55172413793105"/>
+        </scene>
+        <!--Shows-->
+        <scene sceneID="ZOx-gI-Tel">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Shows" referencedIdentifier="Shows" id="T2a-4l-tYP" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="mDE-rB-7hl"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2o2-oh-6kj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1796" y="347"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gr1-sX-Yyh">

@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import SVProgressHUD
-import Alamofire
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
@@ -21,8 +19,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     private var password = ""
     private var passwordEyeActive = false
     private var checkedRememberMe = false
-    private var loginButtonPressed = true
-
+    var loginButtonPressed: Bool?
+    var loginSuccessful: Bool?
+    var authInfo: AuthInfo?
+    var token: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -55,6 +56,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         checkedRememberMe.toggle()
     }
     
+    @IBAction func buttonPressed(_ sender: UIButton) {
+        
+        if sender.titleLabel?.text == "Login" {
+            loginButtonPressed = true
+        } else if sender.titleLabel?.text == "Register" {
+            loginButtonPressed = false
+        } else {
+            print("loginButtonPressed errored out")
+        }
+        
+        initializing()
+        endTextFieldEditing()
+        textFieldChackerAndNetworking()
+    }
+    
     func initializing() {
         email = emailTextField.text ?? ""
         password = passwordTextField.text ?? ""
@@ -66,8 +82,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldChackerAndNetworking() {
-        
-        /// Email checker
         if emailTextField.text == "" {
             emailTextField.placeholder = "This field cannot be empty!"
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
@@ -75,7 +89,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             }
         }
         
-        /// Password checker
         if passwordTextField.text == "" {
             passwordTextField.placeholder = "This field cannot be empty!"
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
@@ -83,7 +96,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             }
         }
         
-        /// Networking
         if emailTextField.text != "" && passwordTextField.text != "" {
             networking(email: email, password: password)
         }
@@ -94,66 +106,4 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    @IBAction func buttonPressed(_ sender: UIButton) {
-        
-        if sender.titleLabel?.text == "Login" {
-            loginButtonPressed = true
-        } else if sender.titleLabel?.text == "Register" {
-            loginButtonPressed = false
-        } else {
-            print("loginButtonPressed errored out")
-        }
-        
-        endTextFieldEditing()
-        initializing()
-        textFieldChackerAndNetworking()
-    }
 }
-
-private extension LoginViewController {
-    
-    func networking(email: String, password: String) {
-        
-        SVProgressHUD.show()
-        
-        let params: [String: String] = [
-            "email": email,
-            "password": password,
-        ]
-        
-        AF
-            .request(
-                url(loginButtonPressed),
-                method: .post,
-                parameters: params,
-                encoder: JSONParameterEncoder.default
-            )
-            .validate()
-            .responseDecodable(of: Users.self) { response in
-                switch response.result {
-                case .success(let response):
-                    print("Success: \(response.user.email)")
-                    SVProgressHUD.dismiss()
-                case .failure (let error):
-                    print("Failure: \(error)")
-                    SVProgressHUD.dismiss()
-                }
-            }
-    }
-    
-    func url(_ loginButtonPressed: Bool) -> String {
-        
-        let loginUrl = "https://tv-shows.infinum.academy/users/sign_in"
-        let regUrl = "https://tv-shows.infinum.academy/users"
-        
-        if loginButtonPressed {
-            return loginUrl
-        } else if !loginButtonPressed {
-            return regUrl
-        } else {
-            return "loginButtonPressed errored out"
-        }
-    }
-}
-
-

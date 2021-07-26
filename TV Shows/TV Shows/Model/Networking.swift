@@ -11,7 +11,7 @@ import Alamofire
 
 extension LoginViewController {
     
-    func networking(email: String, password: String) {
+    func networking(email: String, password: String, url: String) {
         SVProgressHUD.show()
         
         let params: [String: String] = [
@@ -22,42 +22,28 @@ extension LoginViewController {
         
         AF
             .request(
-                url(loginButtonPressed ?? true),
+                url,
                 method: .post,
                 parameters: params,
                 encoder: JSONParameterEncoder.default
             )
             .validate()
-            .responseDecodable(of: UsersResponse.self) {
-                response in
+            .responseDecodable(of: UsersResponse.self) { [weak self] response in
+                guard let self = self else { return }
                 switch response.result {
                 case .success(let userResponse):
                     print("Success: \(userResponse.user.email)")
-                    self.loginSuccessful = true
                     SVProgressHUD.dismiss()
                     let headers = response.response?.headers.dictionary ?? [:]
                     let authInfo = try? AuthInfo(headers: headers)
                     SessionManager.shared.authInfo = authInfo
+                    self.performSegue(withIdentifier: "goToShows", sender: self)
                 case .failure (let error):
                     print("Failure: \(error)")
-                    self.loginSuccessful = false
+                    self.popupAlert()
                     SVProgressHUD.dismiss()
                 }
-                self.loginController()
             }
-    }
-    
-    func url(_ loginButtonPressed: Bool) -> String {
-        let loginUrl = "https://tv-shows.infinum.academy/users/sign_in"
-        let regUrl = "https://tv-shows.infinum.academy/users"
-        
-        if loginButtonPressed {
-            return loginUrl
-        } else if !loginButtonPressed {
-            return regUrl
-        } else {
-            return "loginButtonPressed errored out"
-        }
     }
 }
 

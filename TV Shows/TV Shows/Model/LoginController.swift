@@ -9,14 +9,6 @@ import UIKit
 
 extension LoginViewController {
     
-    func loginController() {
-        if loginSuccessful ?? false {
-            performSegue(withIdentifier: "goToShows", sender: self)
-        } else {
-            popupAlert()
-        }
-    }
-    
     func popupAlert() {
         let alert = UIAlertController(title: "Login/Register Failure",
                                       message: "Wrong account information or trying to register existing user. Please try again.",

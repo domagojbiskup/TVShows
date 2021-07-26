@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import SVProgressHUD
+import Alamofire
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
@@ -14,14 +16,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet private weak var passwordEyeButton: UIButton!
     @IBOutlet private weak var checkBoxRememberMeButton: UIButton!
     @IBOutlet private weak var loginButton: UIButton!
-    
-    private var email = ""
-    private var password = ""
-    private var passwordEyeActive = false
-    private var checkedRememberMe = false
-    var loginButtonPressed: Bool?
-    var loginSuccessful: Bool?
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,43 +28,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func passwordEyeButton(_ sender: UIButton) {
-        if passwordEyeActive {
-            passwordEyeButton.setImage(UIImage(named: "ic-visible"), for: .normal)
-            passwordTextField.isSecureTextEntry = true
-        } else {
-            passwordEyeButton.setImage(UIImage(named: "ic-invisible"), for: .normal)
+        if !passwordEyeButton.isSelected {
             passwordTextField.isSecureTextEntry = false
+        } else {
+            passwordTextField.isSecureTextEntry = true
         }
-        passwordEyeActive.toggle()
+        passwordEyeButton.isSelected.toggle()
     }
     
     @IBAction func rememberMeButton(_ sender: UIButton) {
-        if checkedRememberMe {
-            checkBoxRememberMeButton.setImage(UIImage(named: "ic-checkbox-unselected"), for: .normal)
-        } else {
-            checkBoxRememberMeButton.setImage(UIImage(named: "ic-checkbox-selected"), for: .normal)
-        }
-        checkedRememberMe.toggle()
-    }
-    
-    @IBAction func buttonPressed(_ sender: UIButton) {
-        
-        if sender.titleLabel?.text == "Login" {
-            loginButtonPressed = true
-        } else if sender.titleLabel?.text == "Register" {
-            loginButtonPressed = false
-        } else {
-            print("loginButtonPressed errored out")
-        }
-        
-        initializing()
-        endTextFieldEditing()
-        textFieldChackerAndNetworking()
-    }
-    
-    func initializing() {
-        email = emailTextField.text ?? ""
-        password = passwordTextField.text ?? ""
+        checkBoxRememberMeButton.setImage(UIImage(named: "ic-checkbox-unselected"), for: .normal)
+        checkBoxRememberMeButton.setImage(UIImage(named: "ic-checkbox-selected"), for: .selected)
+        checkBoxRememberMeButton.isSelected.toggle()
     }
     
     func endTextFieldEditing() {
@@ -77,16 +47,25 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.endEditing(true)
     }
     
-    func textFieldChackerAndNetworking() {
+    func textFieldChackerAndNetworking(url: String) {
+        let isEmailEmpty = emailTextField.text?.isEmpty ?? true
+        let isPasswordEmpty = passwordTextField.text?.isEmpty ?? true
         
-        if emailTextField.text == "" {
+        guard
+            let email = emailTextField.text,
+            let password = passwordTextField.text
+        else { return }
+        
+        /// Email checker
+        if isEmailEmpty {
             emailTextField.placeholder = "This field cannot be empty!"
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 self.emailTextField.placeholder = "Email"
             }
         }
         
-        if passwordTextField.text == "" {
+        /// Password checker
+        if isPasswordEmpty {
             passwordTextField.placeholder = "This field cannot be empty!"
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 self.passwordTextField.placeholder = "Password"
@@ -94,12 +73,23 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
         
         if emailTextField.text != "" && passwordTextField.text != "" {
-            networking(email: email, password: password)
+            networking(email: email, password: password, url: url
+            )
         }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         endTextFieldEditing()
         return true
+    }
+    
+    @IBAction func loginButton(_ sender: UIButton) {
+        endTextFieldEditing()
+        textFieldChackerAndNetworking(url: "https://tv-shows.infinum.academy/users/sign_in")
+    }
+    
+    @IBAction func registerButton(_ sender: UIButton) {
+        endTextFieldEditing()
+        textFieldChackerAndNetworking(url: "https://tv-shows.infinum.academy/users")
     }
 }

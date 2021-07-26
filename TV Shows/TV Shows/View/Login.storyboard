@@ -87,6 +87,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gN6-sb-5ty">
                                                 <rect key="frame" x="321" y="348" width="24" height="24"/>
                                                 <state key="normal" image="ic-visible"/>
+                                                <state key="selected" image="ic-invisible"/>
                                                 <connections>
                                                     <action selector="passwordEyeButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="ekP-9v-NwK"/>
                                                 </connections>
@@ -108,7 +109,7 @@
                                                     <color key="titleColor" red="0.32156862745098036" green="0.21176470588235294" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="buttonPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="C3P-Ni-tz2"/>
+                                                    <action selector="loginButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="3zc-dU-Be3"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aq1-uR-ARg">
@@ -118,7 +119,7 @@
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="buttonPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="TaG-nC-Dli"/>
+                                                    <action selector="registerButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="OFJ-m4-hk5"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -223,6 +224,7 @@
     </scenes>
     <resources>
         <image name="ic-checkbox-unselected" width="24" height="24"/>
+        <image name="ic-invisible" width="24" height="24"/>
         <image name="ic-visible" width="24" height="24"/>
         <image name="logo-white" width="162" height="38"/>
         <image name="splash-top-left" width="140" height="100"/>

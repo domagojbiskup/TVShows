@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4234602E269F4CF7005C5091 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4234602D269F4CF7005C5091 /* UserResponse.swift */; };
 		423D4C532698E5B30098B462 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 423D4C522698E5B30098B462 /* Login.storyboard */; };
 		423D4C572698E8460098B462 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423D4C562698E8460098B462 /* LoginViewController.swift */; };
 		42ED01AE26975F8D0054DFC1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42ED01AD26975F8D0054DFC1 /* AppDelegate.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4234602D269F4CF7005C5091 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
 		423D4C522698E5B30098B462 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		423D4C562698E8460098B462 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		42ED01AA26975F8D0054DFC1 /* TV Shows.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TV Shows.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				423D4C4F2698E51E0098B462 /* Login */,
+				4234602D269F4CF7005C5091 /* UserResponse.swift */,
 				42ED01AD26975F8D0054DFC1 /* AppDelegate.swift */,
 				42ED01B626975F8E0054DFC1 /* Assets.xcassets */,
 				42ED01B826975F8E0054DFC1 /* LaunchScreen.storyboard */,
@@ -93,7 +96,6 @@
 				FCDCEBAAC4868B76B85282C0 /* Pods-TV Shows.debug.xcconfig */,
 				9B2779FFA6AA5EAA99629414 /* Pods-TV Shows.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -213,6 +215,7 @@
 			files = (
 				423D4C572698E8460098B462 /* LoginViewController.swift in Sources */,
 				42ED01AE26975F8D0054DFC1 /* AppDelegate.swift in Sources */,
+				4234602E269F4CF7005C5091 /* UserResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

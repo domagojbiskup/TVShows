@@ -6,32 +6,30 @@
 //
 
 import UIKit
-import SVProgressHUD
 
 class LoginViewController: UIViewController {
     
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet private weak var clickCounterLabel: UILabel!
-    @IBOutlet private weak var activityIndicatorView: UIActivityIndicatorView!
+    @IBOutlet private weak var checkBox: UIButton!
+    @IBOutlet private weak var loginButton: UIButton!
     
-    private var buttonTapCount = 1
+    private var checked = false
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        SVProgressHUD.show()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            SVProgressHUD.dismiss()
-        }
+        loginButton.layer.cornerRadius = 5
+        loginButton.layer.masksToBounds = true
         
-        activityIndicator.startAnimating()
-        Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { [weak self] _ in
-            self?.activityIndicator.stopAnimating()
-        }
     }
 
-    @IBAction func plusOneButton(_ sender: Any) {
-        clickCounterLabel.text = "\(buttonTapCount)"
-        buttonTapCount += 1
+    @IBAction func rememberMeButton(_ sender: UIButton) {
+                
+        if checked {
+             checkBox.setImage(UIImage(named: "ic-checkbox-unselected"), for: .normal)
+        } else {
+            checkBox.setImage(UIImage(named: "ic-checkbox-selected"), for: .normal)
+        }
+        checked.toogle()
     }
 }

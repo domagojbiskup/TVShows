@@ -34,7 +34,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func passwordEyeButton(_ sender: UIButton) {
-        
         if passwordEyeActive {
             passwordEyeButton.setImage(UIImage(named: "ic-visible"), for: .normal)
             passwordTextField.isSecureTextEntry = true
@@ -46,7 +45,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func rememberMeButton(_ sender: UIButton) {
-        
         if checkedRememberMe {
             checkBoxRememberMeButton.setImage(UIImage(named: "ic-checkbox-unselected"), for: .normal)
         } else {
@@ -155,5 +153,3 @@ private extension LoginViewController {
         }
     }
 }
-
-

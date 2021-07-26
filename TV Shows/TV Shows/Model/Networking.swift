@@ -61,7 +61,7 @@ extension LoginViewController {
     }
 }
 
-extension Shows {
+extension HomeViewController {
     
     func networking () {
         SVProgressHUD.show()

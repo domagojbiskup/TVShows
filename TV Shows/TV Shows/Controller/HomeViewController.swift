@@ -1,5 +1,5 @@
 //
-//  Shows.swift
+//  HomeViewController.swift
 //  TV Shows
 //
 //  Created by Infinum Infinum on 23.07.2021..
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class Shows: UIViewController {
+class HomeViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -21,14 +21,14 @@ class Shows: UIViewController {
     }
 }
 
-extension Shows: UITableViewDelegate {
+extension HomeViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
 }
 
-extension Shows: UITableViewDataSource {
+extension HomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 0

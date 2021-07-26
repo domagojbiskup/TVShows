@@ -1,23 +1,24 @@
 //
-//  User.swift
+//  Users.swift
 //  TV Shows
 //
-//  Created by Infinum Infinum on 14.07.2021..
+//  Created by Infinum Infinum on 16.07.2021..
 //
 
-struct UserResponse: Decodable {
+import Foundation
+
+struct Users: Codable {
     let user: User
 }
 
-struct User: Decodable {
+struct User: Codable {
     let id: String
-    let mail: String
+    let email: String
     let imageUrl: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case id
-        case mail = "email"
+        case email
         case imageUrl = "image_url"
     }
 }
-

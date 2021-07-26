@@ -21,7 +21,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     private var checkedRememberMe = false
     var loginButtonPressed: Bool?
     var loginSuccessful: Bool?
-    var token: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,6 +80,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldChackerAndNetworking() {
+        
         if emailTextField.text == "" {
             emailTextField.placeholder = "This field cannot be empty!"
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
@@ -104,5 +104,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         endTextFieldEditing()
         return true
     }
-    
 }
+
+

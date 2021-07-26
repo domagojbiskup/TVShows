@@ -22,8 +22,3 @@ struct User: Codable {
         case imageUrl = "image_url"
     }
 }
-
-//struct LoginData: Codable {
-//    let token: String
-//}
-

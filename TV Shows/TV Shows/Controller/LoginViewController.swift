@@ -21,7 +21,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     private var checkedRememberMe = false
     var loginButtonPressed: Bool?
     var loginSuccessful: Bool?
-    var authInfo: AuthInfo?
     var token: String?
     
     override func viewDidLoad() {

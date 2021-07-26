@@ -31,10 +31,13 @@ extension LoginViewController {
             .responseDecodable(of: UsersResponse.self) {
                 response in
                 switch response.result {
-                case .success(let response):
-                    print("Success: \(response.user.email)")
+                case .success(let userResponse):
+                    print("Success: \(userResponse.user.email)")
                     self.loginSuccessful = true
                     SVProgressHUD.dismiss()
+                    let headers = response.response?.headers.dictionary ?? [:]
+                    let authInfo = try? AuthInfo(headers: headers)
+                    SessionManager.shared.authInfo = authInfo
                 case .failure (let error):
                     print("Failure: \(error)")
                     self.loginSuccessful = false
@@ -64,27 +67,19 @@ extension Shows {
         SVProgressHUD.show()
         
         let url = "https://tv-shows.infinum.academy/shows"
-        
-//        let headers = [
-//            "Accept": acceptt,
-//            "access-token": accessToken,
-//            "client": client,
-//            "token-type": tokenType,
-//            "expiry": expiry,
-//            "uid": uid,
-//            "Content-Type": contentType
-//        ]
+        let headers = SessionManager.shared.authInfo?.headers ?? [:]
         
         AF
             .request(
                 url,
                 method: .get,
-                parameters: ["page": "1", "items": "100"]/*,
-                headers: HTTPHeaders(authInfo.headers)*/) // MARK:- kak ovaj headers rijesit
+                parameters: ["page": "1", "items": "100"],
+                headers: HTTPHeaders(headers)
+            )
             .validate()
             .responseDecodable(of: ShowsResponse.self) {
-                [weak self] response in
-                switch response.result {
+                [weak self] dataResponse in
+                switch dataResponse.result {
                 case .success(let response):
                     print("Success: \(response)")
                     self?.showsResponse = response
@@ -97,27 +92,3 @@ extension Shows {
             }
     }
 }
-/*
- .responseDecodable(of: UserResponse.self) { [weak self] dataResponse in
-     switch dataResponse.result {
-     case .success(let userResponse):
-         let headers = dataResponse.response?.headers.dictionary ?? [:]
-         self?.handleSuccesfulLogin(for: userResponse.user, headers: headers)
-     case .failure(let error):
-         self?._infoLabel.text = "API/Serialization failure: \(error)"
-         SVProgressHUD.showError(withStatus: "Failure")
-     }
- }
-}
-
-// Headers will be used for subsequent authorization on next requests
-func handleSuccesfulLogin(for user: User, headers: [String: String]) {
-guard let authInfo = try? AuthInfo(headers: headers) else {
- _infoLabel.text = "Missing headers"
- SVProgressHUD.showError(withStatus: "Missing headers")
- return
-}
-_infoLabel.text = "User: \(user), authInfo: \(authInfo)"
-SVProgressHUD.showSuccess(withStatus: "Success")
-}
- */

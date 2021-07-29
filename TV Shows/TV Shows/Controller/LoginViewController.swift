@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import SVProgressHUD
-import Alamofire
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
@@ -23,8 +21,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         emailTextField.delegate = self
         passwordTextField.delegate = self
         
-        loginButton.layer.cornerRadius = 17
+        loginButton.layer.cornerRadius = 20
         loginButton.layer.masksToBounds = true
+        
+        textFieldChackerAndNetworking(urlExtension: "/users/sign_in")
     }
     
     @IBAction func passwordEyeButton(_ sender: UIButton) {
@@ -47,7 +47,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.endEditing(true)
     }
     
-    func textFieldChackerAndNetworking(url: String) {
+    func textFieldChackerAndNetworking(urlExtension: String) {
         let isEmailEmpty = emailTextField.text?.isEmpty ?? true
         let isPasswordEmpty = passwordTextField.text?.isEmpty ?? true
         
@@ -73,7 +73,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
         
         if emailTextField.text != "" && passwordTextField.text != "" {
-            networking(email: email, password: password, url: url
+            pushData(email: email, password: password, urlExtension: urlExtension
             )
         }
     }
@@ -85,11 +85,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func loginButton(_ sender: UIButton) {
         endTextFieldEditing()
-        textFieldChackerAndNetworking(url: "https://tv-shows.infinum.academy/users/sign_in")
+        textFieldChackerAndNetworking(urlExtension: "/users/sign_in")
     }
     
     @IBAction func registerButton(_ sender: UIButton) {
         endTextFieldEditing()
-        textFieldChackerAndNetworking(url: "https://tv-shows.infinum.academy/users")
+        textFieldChackerAndNetworking(urlExtension: "/users")
     }
 }

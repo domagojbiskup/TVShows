@@ -1,5 +1,5 @@
 //
-//  ShowsResponse.swift
+//  Shows.swift
 //  TV Shows
 //
 //  Created by Infinum Infinum on 24.07.2021..
@@ -14,10 +14,10 @@ struct ShowsResponse: Decodable {
 struct Show: Decodable {
     let id: String
     let title: String
-    let description: String?
     let imageUrl: String
-    let averageRating: String?
-    let noOfReviews: String
+    let description: String?
+    let noOfReviews: Int
+    let averageRating: Double?
 
     enum CodingKeys: String, CodingKey {
         case id

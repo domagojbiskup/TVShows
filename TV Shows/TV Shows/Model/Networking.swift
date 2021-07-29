@@ -8,10 +8,15 @@
 import Foundation
 import SVProgressHUD
 import Alamofire
+import Kingfisher
+
+private let baseUrl = "https://tv-shows.infinum.academy"
+private let headers = SessionManager.shared.authInfo?.headers ?? [:]
+var eMail: String?
 
 extension LoginViewController {
     
-    func networking(email: String, password: String, url: String) {
+    func pushData(email: String, password: String, urlExtension: String) {
         SVProgressHUD.show()
         
         let params: [String: String] = [
@@ -22,42 +27,41 @@ extension LoginViewController {
         
         AF
             .request(
-                url,
+                baseUrl + urlExtension,
                 method: .post,
                 parameters: params,
                 encoder: JSONParameterEncoder.default
             )
             .validate()
-            .responseDecodable(of: UsersResponse.self) { [weak self] response in
+            .responseDecodable(of: UsersResponse.self) {
+                [weak self] dataResponse in
                 guard let self = self else { return }
-                switch response.result {
-                case .success(let userResponse):
-                    print("Success: \(userResponse.user.email)")
-                    SVProgressHUD.dismiss()
-                    let headers = response.response?.headers.dictionary ?? [:]
+                switch dataResponse.result {
+                case .success(let response):
+                    print("Success: \(response.user.email)")
+                    let headers = dataResponse.response?.headers.dictionary ?? [:]
                     let authInfo = try? AuthInfo(headers: headers)
                     SessionManager.shared.authInfo = authInfo
+                    SVProgressHUD.dismiss()
+                    eMail = response.user.email
                     self.performSegue(withIdentifier: "goToShows", sender: self)
                 case .failure (let error):
                     print("Failure: \(error)")
-                    self.popupAlert()
                     SVProgressHUD.dismiss()
+                    self.popupAlert()
                 }
             }
     }
 }
 
-extension HomeViewController {
+extension ShowsViewController {
     
-    func networking () {
+    func fetchData (urlExtension: String) {
         SVProgressHUD.show()
-        
-        let url = "https://tv-shows.infinum.academy/shows"
-        let headers = SessionManager.shared.authInfo?.headers ?? [:]
         
         AF
             .request(
-                url,
+                baseUrl + urlExtension,
                 method: .get,
                 parameters: ["page": "1", "items": "100"],
                 headers: HTTPHeaders(headers)
@@ -65,16 +69,88 @@ extension HomeViewController {
             .validate()
             .responseDecodable(of: ShowsResponse.self) {
                 [weak self] dataResponse in
+                guard let self = self else { return }
                 switch dataResponse.result {
                 case .success(let response):
-                    print("Success: \(response)")
-                    self?.showsResponse = response
-                    self?.tableView.reloadData()
+                    //                    print("Success: \(response)")
+                    self.shows = response.shows
+                    self.tableView.reloadData()
                     SVProgressHUD.dismiss()
                 case .failure (let error):
                     print("Failure: \(error)")
                     SVProgressHUD.dismiss()
                 }
             }
+    }
+}
+
+extension ShowDetailsVC {
+    
+    func fetchData(urlExtension: String) {
+        SVProgressHUD.show()
+        
+        AF
+            .request(
+                baseUrl + urlExtension,
+                method: .get,
+                parameters: ["page": "1", "items": "100"],
+                headers: HTTPHeaders(headers)
+            )
+            .validate()
+            .responseDecodable(of: ReviewsResponse.self) {
+                [weak self] dataResponse in
+                guard let self = self else { return }
+                switch dataResponse.result {
+                case .success(let response):
+                    //                    print("Success: \(response)")
+                    self.reviews = response.reviews
+                    self.tableView.reloadData()
+                    SVProgressHUD.dismiss()
+                case .failure(let error):
+                    print("Failure: \(error)")
+                    SVProgressHUD.dismiss()
+                }
+            }
+    }
+}
+
+extension WriteAReviewVC {
+    
+    func pushData(comment: String, rating: String, showId: String, urlExtension: String) {
+        SVProgressHUD.show()
+        
+        let params: [String: String] = [
+            "comment": comment,
+            "rating": rating,
+            "show_id": showId
+        ]
+        
+        AF
+            .request(
+                baseUrl + urlExtension,
+                method: .post,
+                parameters: params,
+                encoder: JSONParameterEncoder.default,
+                headers: HTTPHeaders(headers)
+            )
+            .validate()
+            .responseDecodable(of: ReviewResponse.self) {
+                [weak self] dataResponse in
+                guard let self = self else { return }
+                switch dataResponse.result {
+                case .success(let response):
+//                    print("Success: \(response.review)")
+                    SVProgressHUD.dismiss()
+                case .failure(let error):
+                    print("Failure: \(error)")
+                    SVProgressHUD.dismiss()
+                }
+            }
+    }
+}
+
+extension UIImageView {
+    func setImage(imageUrl: String) {
+        self.kf.setImage(with: URL(string: imageUrl))
     }
 }

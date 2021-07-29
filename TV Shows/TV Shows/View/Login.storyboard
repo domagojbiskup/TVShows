@@ -102,8 +102,11 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5l5-y1-Sww">
-                                                <rect key="frame" x="20" y="454" width="335" height="36"/>
+                                                <rect key="frame" x="20" y="454" width="335" height="40"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="WD6-66-lhO"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                 <state key="normal" title="Login">
                                                     <color key="titleColor" red="0.32156862745098036" green="0.21176470588235294" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
@@ -113,7 +116,10 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aq1-uR-ARg">
-                                                <rect key="frame" x="20" y="510" width="335" height="36"/>
+                                                <rect key="frame" x="20" y="514" width="335" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="F19-MC-uYv"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                 <state key="normal" title="Register">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -123,7 +129,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.32156862745098036" green="0.21176470588235294" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.40106636289999997" green="0.2871255875" blue="0.62799805399999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="5l5-y1-Sww" firstAttribute="leading" secondItem="R63-3h-uXU" secondAttribute="leading" constant="20" id="17X-3A-lBf"/>
                                             <constraint firstItem="ePv-2a-Ma9" firstAttribute="top" secondItem="vc7-uK-YuC" secondAttribute="bottom" constant="30" id="1aX-xY-JAK"/>

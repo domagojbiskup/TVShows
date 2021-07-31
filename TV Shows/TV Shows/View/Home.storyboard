@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Shows-->
+        <!--HomeViewController-->
         <scene sceneID="Od0-J0-oUZ">
             <objects>
-                <viewController id="hoD-yg-F7q" customClass="ShowsViewController" customModule="TV_Shows" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" title="HomeViewController" id="hoD-yg-F7q" customClass="HomeViewController" customModule="TV_Shows" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eTe-zB-sfs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -115,7 +115,7 @@
                     <navigationItem key="navigationItem" title="Shows" id="0dZ-Oc-827">
                         <barButtonItem key="rightBarButtonItem" title="MyAccount" image="ic-profile" id="118-8Q-RMP">
                             <connections>
-                                <segue destination="OXZ-bP-XVS" kind="presentation" identifier="goToMyAccount" id="5pi-sS-dbx"/>
+                                <action selector="MyAccount:" destination="hoD-yg-F7q" id="t9N-C5-Vpn"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -129,18 +129,10 @@
             </objects>
             <point key="canvasLocation" x="15.942028985507248" y="-230.35714285714283"/>
         </scene>
-        <!--MyAccount-->
-        <scene sceneID="vpT-iv-mi4">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="MyAccount" storyboardName="MyAccount" referencedIdentifier="MyAccount" id="OXZ-bP-XVS" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="u1d-Am-fTM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="702" y="-230"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="ubM-uZ-Kbe">
             <objects>
-                <navigationController storyboardIdentifier="Shows" automaticallyAdjustsScrollViewInsets="NO" id="cET-iu-Sth" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cET-iu-Sth" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="dRC-vE-UHk">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
@@ -156,6 +148,7 @@
             <point key="canvasLocation" x="-894.20289855072474" y="-230.35714285714283"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="0.32156862749999998" green="0.21176470589999999" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
         <image name="ic-profile" width="24" height="24"/>
         <image name="ic-show-deselected" width="24" height="24"/>

@@ -12,7 +12,7 @@
         <!--MyAccount-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController title="MyAccount" id="Y6W-OH-hqX" customClass="MyAccountVC" customModule="TV_Shows" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyAccountVC" title="MyAccount" id="Y6W-OH-hqX" customClass="MyAccountVC" customModule="TV_Shows" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -61,7 +61,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="logoutButtonPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Z8M-Dn-N7L"/>
+                                    <action selector="logoutButtonPressed:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="ETx-0T-sMU"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -83,15 +83,15 @@
                         <barButtonItem key="leftBarButtonItem" title="Close" id="xYV-SR-WSh">
                             <color key="tintColor" red="0.32156862749999998" green="0.21176470589999999" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <action selector="unwindMyAccount:" destination="Y6W-OH-hqX" id="PmF-Cu-g2B"/>
+                                <action selector="closeButtonPressed:" destination="Y6W-OH-hqX" id="3L3-E2-ApQ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="changePhotoButton" destination="hFD-Oe-5FW" id="M8d-xW-gNf"/>
-                        <outlet property="email" destination="FA1-UB-DP9" id="4Jf-vC-daH"/>
-                        <outlet property="logoutButton" destination="imZ-gl-qat" id="MIQ-Ax-wmC"/>
-                        <outlet property="photo" destination="DXV-u4-Bf9" id="33V-29-8Sm"/>
+                        <outlet property="changeProfilePhotoButton" destination="qae-Vx-rlj" id="oDZ-kQ-nTZ"/>
+                        <outlet property="email" destination="FA1-UB-DP9" id="NQB-ww-Hds"/>
+                        <outlet property="logoutButton" destination="imZ-gl-qat" id="1md-uM-dy7"/>
+                        <outlet property="photo" destination="DXV-u4-Bf9" id="adu-Vx-VSB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -117,6 +117,7 @@
             <point key="canvasLocation" x="-26.086956521739133" y="37.5"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="0.32156862749999998" green="0.21176470589999999" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
         <image name="ic-profile-placeholder" width="150" height="150"/>
         <systemColor name="systemBackgroundColor">

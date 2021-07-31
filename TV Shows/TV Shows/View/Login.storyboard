@@ -9,15 +9,15 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Login View Controller-->
+        <!--LoginViewController-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" customClass="LoginViewController" customModule="TV_Shows" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" title="LoginViewController" id="Y6W-OH-hqX" customClass="LoginViewController" customModule="TV_Shows" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="l4u-45-sgA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F5u-jm-luC">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="never" translatesAutoresizingMaskIntoConstraints="NO" id="F5u-jm-luC">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R63-3h-uXU">
@@ -189,26 +189,17 @@
                     <navigationItem key="navigationItem" id="mZ7-hC-xlu"/>
                     <connections>
                         <outlet property="checkBoxRememberMeButton" destination="01I-XS-hrV" id="09W-wI-uGz"/>
+                        <outlet property="emailLine" destination="afH-zC-kUI" id="XiS-qk-6lg"/>
                         <outlet property="emailTextField" destination="vc7-uK-YuC" id="uOS-Bz-3YZ"/>
                         <outlet property="loginButton" destination="5l5-y1-Sww" id="oaf-t4-90F"/>
                         <outlet property="passwordEyeButton" destination="gN6-sb-5ty" id="K2n-Zk-e2K"/>
+                        <outlet property="passwordLine" destination="tlA-Px-W26" id="Gnh-aO-ejX"/>
                         <outlet property="passwordTextField" destination="ePv-2a-Ma9" id="S6a-82-oR0"/>
-                        <segue destination="T2a-4l-tYP" kind="presentation" identifier="goToShows" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="365-gR-tkd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1007.2" y="346.55172413793105"/>
-        </scene>
-        <!--Shows-->
-        <scene sceneID="ZOx-gI-Tel">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Shows" referencedIdentifier="Shows" id="T2a-4l-tYP" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="mDE-rB-7hl"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2o2-oh-6kj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1796" y="347"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gr1-sX-Yyh">
@@ -219,6 +210,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BdJ-cb-uqs">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="G5f-cy-e0H"/>
                     </connections>
@@ -228,6 +222,7 @@
             <point key="canvasLocation" x="64.799999999999997" y="346.55172413793105"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="0.32156862749999998" green="0.21176470589999999" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
         <image name="ic-checkbox-unselected" width="24" height="24"/>
         <image name="ic-invisible" width="24" height="24"/>

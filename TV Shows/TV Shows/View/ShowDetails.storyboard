@@ -28,7 +28,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="8MK-A2-oXH" kind="presentation" identifier="goToWriteAReview" id="mdw-rz-a6j"/>
+                                    <action selector="WriteAReview:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Loa-Qj-mIe"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="idL-3m-9nv">
@@ -59,14 +59,6 @@
             </objects>
             <point key="canvasLocation" x="884.05797101449286" y="37.5"/>
         </scene>
-        <!--WriteAReview-->
-        <scene sceneID="iwc-SH-Rcr">
-            <objects>
-                <viewControllerPlaceholder storyboardName="WriteAReview" referencedIdentifier="WriteAReview" id="8MK-A2-oXH" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9Pe-P2-FZi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1625" y="38"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Peh-dn-vW7">
             <objects>
@@ -86,6 +78,7 @@
             <point key="canvasLocation" x="-26.086956521739133" y="37.5"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="0.32156862749999998" green="0.21176470589999999" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -26,7 +26,20 @@ class ShowDetailsVC: UIViewController {
         
         self.tableView.register(UINib(nibName: "ShowDetailsCell1", bundle: nil), forCellReuseIdentifier: String(describing: ShowDetailsCell1VC.self))
         self.tableView.register(UINib(nibName: "ShowDetailsCell2", bundle: nil), forCellReuseIdentifier: String(describing: ShowDetailsCell2VC.self))
+        
+        self.tableView.refreshControl = UIRefreshControl()
+        self.tableView.refreshControl?.addTarget(self,
+                                                 action: #selector(pullToRefresh),
+                                                 for: .valueChanged)
+    }
+    
+    @objc private func pullToRefresh() {
+        fetchData(urlExtension: "/shows/\(show?.id ?? "")/reviews/")
+
+        DispatchQueue.main.async {
+            self.tableView.refreshControl?.endRefreshing()
         }
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToWriteAReview" {
@@ -35,6 +48,12 @@ class ShowDetailsVC: UIViewController {
             viewController.showId = show?.id
             viewController.delegate = self
         }
+    }
+    
+    @IBAction func WriteAReview(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "WriteAReview", bundle: .main)
+        let WriteAReviewVC = storyboard.instantiateViewController(withIdentifier: "WriteAReviewVC") as! WriteAReviewVC
+        navigationController?.pushViewController(WriteAReviewVC, animated: true)
     }
 }
 
@@ -62,6 +81,7 @@ extension ShowDetailsVC: UITableViewDataSource {
             let reviewCell = tableView.dequeueReusableCell(
                 withIdentifier: String(describing: ShowDetailsCell2VC.self), for: indexPath
             ) as! ShowDetailsCell2VC
+            
             let review = reviews[indexPath.row - 1]
             reviewCell.reviewerProfilePhoto.setImage(imageUrl: review.user.imageUrl ?? "")
             reviewCell.reviewerEmail.text = review.user.email

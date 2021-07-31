@@ -26,10 +26,28 @@ class WriteAReviewVC: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         comment.delegate = self
     }
     
+    @IBAction func closePressed(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
+
+    }
+
+    @IBAction func submit(_ sender: UIButton) {
+        reviewChecker()
+
+        guard
+            let comment = comment.text,
+            let showId = showId
+        else { return }
+        
+        if !comment.isEmpty && rating != 0 {
+            pushData(comment: "\(comment)", rating: "\(rating)", showId: showId, urlExtension: "/reviews")
+        }
+    }
+
     func textFieldDidEndEditing(_ textField: UITextField) {
         comment.endEditing(true)
     }
@@ -38,7 +56,11 @@ class WriteAReviewVC: UIViewController, UITextFieldDelegate {
         comment.endEditing(true)
         return true
     }
-        
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     func reviewChecker() {
         let isCommentEmpty = comment.text?.isEmpty ?? true
         
@@ -71,29 +93,7 @@ class WriteAReviewVC: UIViewController, UITextFieldDelegate {
             }
         }
     }
-    
-    @IBAction func unwindShowDetails(_ sender: UIStoryboardSegue) {
-        dismiss(animated: true, completion: nil)
-    }
 
-    @IBAction func submit(_ sender: UIButton) {
-        reviewChecker()
-
-        guard
-            let comment = comment.text,
-            let showId = showId
-        else { return }
-        
-        if !comment.isEmpty && rating != 0 {
-            pushData(comment: "\(comment)", rating: "\(rating)", showId: showId, urlExtension: "/reviews")
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                self.delegate?.reloadData()
-                self.dismiss(animated: true, completion: nil)
-            }
-        }
-    }
-    
     @IBAction func star1Button(_ sender: UIButton) {
         star2.isSelected = false
         star3.isSelected = false

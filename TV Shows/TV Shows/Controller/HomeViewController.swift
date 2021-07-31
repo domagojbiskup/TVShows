@@ -18,6 +18,9 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.setNavigationBarHidden(false, animated: false)
+        self.navigationItem.setHidesBackButton(true, animated: false)
+        
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -34,6 +37,12 @@ class HomeViewController: UIViewController {
         topRatedShowsButton.isSelected = true
         showsAllButton.isSelected = false
         fetchData(urlExtension: "/shows/top_rated")
+    }
+    
+    @IBAction func MyAccount(_ sender: UIBarButtonItem) {
+        let storyboard = UIStoryboard(name: "MyAccount", bundle: .main)
+        let MyAccountVC = storyboard.instantiateViewController(withIdentifier: "MyAccountVC") as! MyAccountVC
+        navigationController?.pushViewController(MyAccountVC, animated: true)
     }
 }
 
@@ -66,9 +75,9 @@ extension HomeViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         let show = shows[indexPath.row]
         
+        /// Transition - New VC & Storyboard
         let storyboard = UIStoryboard(name: "ShowDetails", bundle: .main)
         let showViewController = storyboard.instantiateViewController(withIdentifier: "ShowDetailsVC") as! ShowDetailsVC
-        
         showViewController.show = show
         navigationController?.pushViewController(showViewController, animated: true)
     }

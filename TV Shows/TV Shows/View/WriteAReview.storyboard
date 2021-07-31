@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Write a Review-->
+        <!--WriteAReviewVC-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="WriteAReviewVC" id="Y6W-OH-hqX" customClass="WriteAReviewVC" customModule="TV_Shows" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WriteAReviewVC" title="WriteAReviewVC" id="Y6W-OH-hqX" customClass="WriteAReviewVC" customModule="TV_Shows" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -135,7 +135,7 @@
                     <navigationItem key="navigationItem" title="Write a Review" id="cM5-8N-uBi">
                         <barButtonItem key="leftBarButtonItem" title="Close" id="xPw-IH-LfA">
                             <connections>
-                                <action selector="unwindShowDetails:" destination="Y6W-OH-hqX" id="riZ-3j-oLx"/>
+                                <action selector="closePressed:" destination="Y6W-OH-hqX" id="kT0-Rt-tFU"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -171,6 +171,7 @@
             <point key="canvasLocation" x="-26.086956521739133" y="59.598214285714285"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="0.32156862749999998" green="0.21176470589999999" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
         <image name="ic-star-deselected-large" width="40" height="40"/>
         <image name="ic-star-selected-large" width="40" height="40"/>

@@ -11,22 +11,20 @@ class MyAccountVC: UIViewController {
     
     @IBOutlet weak var email: UILabel!
     @IBOutlet weak var photo: UIImageView!
-    @IBOutlet weak var changePhotoButton: UIView!
+    @IBOutlet weak var changeProfilePhotoButton: UIButton!
     @IBOutlet weak var logoutButton: UIButton!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        email.text = eMail
-        
+                
         logoutButton.layer.cornerRadius = 20
         logoutButton.layer.masksToBounds = true
     }
     
-    @IBAction func unwindMyAccount(_ sender: UIStoryboardSegue) {
+    @IBAction func closeButtonPressed(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func logoutButtonPressed(_ sender: Any) {
+    @IBAction func logoutButtonPressed(_ sender: UIButton) {
     }
 }

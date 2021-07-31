@@ -6,13 +6,20 @@
 //
 
 import Foundation
-import SVProgressHUD
 import Alamofire
 import Kingfisher
+import SVProgressHUD
 
 private let baseUrl = "https://tv-shows.infinum.academy"
-private let headers = SessionManager.shared.authInfo?.headers ?? [:]
-var eMail: String?
+private let headers = authCheck()?.headers ?? [:]
+
+private func authCheck() -> AuthInfo? {
+    if AuthStorage.load() != nil {
+        return AuthStorage.load()
+    } else {
+        return AuthTempStorage.storage.authInfo
+    }
+}
 
 extension LoginViewController {
     
@@ -37,14 +44,14 @@ extension LoginViewController {
                 [weak self] dataResponse in
                 guard let self = self else { return }
                 switch dataResponse.result {
-                case .success(let response):
-                    print("Success: \(response.user.email)")
+                case .success/*(let response)*/:
+                    //                    print("Success: \(response.user.email)")
                     let headers = dataResponse.response?.headers.dictionary ?? [:]
                     let authInfo = try? AuthInfo(headers: headers)
-                    SessionManager.shared.authInfo = authInfo
+                    AuthTempStorage.storage.authInfo = authInfo
+                    self.rememberMeChecked(authInfo)
                     SVProgressHUD.dismiss()
-                    eMail = response.user.email
-                    self.performSegue(withIdentifier: "goToShows", sender: self)
+                    self.transitionToHomeVC()
                 case .failure (let error):
                     print("Failure: \(error)")
                     SVProgressHUD.dismiss()
@@ -54,7 +61,7 @@ extension LoginViewController {
     }
 }
 
-extension ShowsViewController {
+extension HomeViewController {
     
     func fetchData (urlExtension: String) {
         SVProgressHUD.show()
@@ -138,8 +145,10 @@ extension WriteAReviewVC {
                 [weak self] dataResponse in
                 guard let self = self else { return }
                 switch dataResponse.result {
-                case .success(let response):
-//                    print("Success: \(response.review)")
+                case .success/*(let response)*/:
+                    //                    print("Success: \(response)")
+                    self.delegate?.reloadData()
+                    self.dismiss(animated: true, completion: nil)
                     SVProgressHUD.dismiss()
                 case .failure(let error):
                     print("Failure: \(error)")

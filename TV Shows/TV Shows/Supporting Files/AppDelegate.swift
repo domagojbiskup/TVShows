@@ -22,8 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let storyboard = UIStoryboard(name: "HomeViewController", bundle: .main)
             let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
             navigationController.viewControllers = [homeViewController]
-            
-            // Jel potreban ovaj dio posto je tak default way?
         } else {
             let storyboard = UIStoryboard(name: "LoginViewController", bundle: .main)
             let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController

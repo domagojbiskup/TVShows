@@ -9,6 +9,8 @@ import Foundation
 
 struct ShowsResponse: Decodable {
     let shows: [Show]
+    let meta: Meta
+
 }
 
 struct Show: Decodable {
@@ -27,4 +29,12 @@ struct Show: Decodable {
         case averageRating = "average_rating"
         case noOfReviews = "no_of_reviews"
     }
+}
+
+struct Meta: Codable {
+    let pagination: Pagination
+}
+
+struct Pagination: Codable {
+    let count, page, items, pages: Int
 }

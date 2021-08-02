@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ShowDetailsCell2VC" rowHeight="163" id="m3l-9Z-cOK" customClass="ShowDetailsCell2VC" customModule="TV_Shows" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ShowReviewTableCell" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ShowReviewTableCell" rowHeight="163" id="m3l-9Z-cOK" customClass="ShowReviewTableCell" customModule="TV_Shows" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="414" height="163"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="m3l-9Z-cOK" id="MQt-AN-wT6">
@@ -108,9 +108,9 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="review" destination="Pzq-41-Dbq" id="bbj-XB-3LQ"/>
-                <outlet property="reviewerEmail" destination="uLl-bl-lNw" id="Ntf-Qy-KhZ"/>
-                <outlet property="reviewerProfilePhoto" destination="31E-Xr-9IO" id="qh0-k8-DUH"/>
+                <outlet property="reviewLabel" destination="Pzq-41-Dbq" id="bbj-XB-3LQ"/>
+                <outlet property="reviewerEmailLabel" destination="uLl-bl-lNw" id="Ntf-Qy-KhZ"/>
+                <outlet property="reviewerProfileImage" destination="31E-Xr-9IO" id="qh0-k8-DUH"/>
                 <outlet property="star1" destination="WQi-O3-gEh" id="m9s-br-N2U"/>
                 <outlet property="star2" destination="e0V-Rp-FL1" id="dAO-WB-Tfs"/>
                 <outlet property="star3" destination="gVl-YW-Q2a" id="hOx-tn-B5a"/>

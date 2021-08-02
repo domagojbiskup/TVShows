@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="699"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ShowsVCCell" rowHeight="120" id="shL-4g-CW3" customClass="ShowsVCCell" customModule="TV_Shows" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="HomeViewControllerCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HomeViewControllerCell" rowHeight="120" id="shL-4g-CW3" customClass="HomeTableViewCell" customModule="TV_Shows" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="24.5" width="414" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="shL-4g-CW3" id="8Ud-2h-yOd">
@@ -54,7 +54,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="showImage" destination="7Oe-kP-lSS" id="2f5-eL-qyU"/>
-                                            <outlet property="showTitle" destination="mLz-Ei-Tyg" id="D5B-Rc-UxA"/>
+                                            <outlet property="showTitleLabel" destination="mLz-Ei-Tyg" id="D5B-Rc-UxA"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -114,6 +114,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Shows" id="0dZ-Oc-827">
                         <barButtonItem key="rightBarButtonItem" title="MyAccount" image="ic-profile" id="118-8Q-RMP">
+                            <color key="tintColor" red="0.32156862749999998" green="0.21176470589999999" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="MyAccount:" destination="hoD-yg-F7q" id="t9N-C5-Vpn"/>
                             </connections>
@@ -137,6 +138,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="dRC-vE-UHk">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.32156862749999998" green="0.21176470589999999" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

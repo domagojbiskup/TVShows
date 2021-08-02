@@ -1,19 +1,19 @@
 //
 //  LoginViewController.swift
-//  TV Home
+//  TV Shows
 //
 //  Created by Infinum Infinum on 09.07.2021..
 //
 
 import UIKit
 
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: UIViewController {
     
     @IBOutlet private weak var emailTextField: UITextField!
-    @IBOutlet private weak var emailLine: UILabel!
+    @IBOutlet private weak var emailLineLabel: UILabel!
     @IBOutlet private weak var passwordTextField: UITextField!
     @IBOutlet private weak var passwordEyeButton: UIButton!
-    @IBOutlet private weak var passwordLine: UILabel!
+    @IBOutlet private weak var passwordLineLabel: UILabel!
     @IBOutlet private weak var checkBoxRememberMeButton: UIButton!
     @IBOutlet private weak var loginButton: UIButton!
     
@@ -27,7 +27,35 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         loginButton.layer.cornerRadius = 20
         loginButton.layer.masksToBounds = true
+        
+//        UIResponder.keyboardWillShowNotification
+//        UIResponder.keyboardWillHideNotification
+//
+//       guard
+//         let value = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as?
+//       NSValue
+//       else { return
+//       }
+//       let height = value.cgRectValue.size.height
     }
+    
+    func rememberMeChecked(_ authInfo: AuthInfo?) {
+        if checkBoxRememberMeButton.isSelected {
+            AuthStorage.store(authInfo)
+        }
+    }
+    
+    func transitionToHomeViewController() {
+        let storyboard = UIStoryboard(name: K.HomeViewController, bundle: .main)
+        let homeViewController = storyboard.instantiateViewController(
+            withIdentifier: K.HomeViewController) as! HomeViewController
+        navigationController?.pushViewController(homeViewController, animated: true)
+    }
+}
+
+// MARK: - IBActions
+
+extension LoginViewController {
     
     @IBAction func passwordEyeButton(_ sender: UIButton) {
         if !passwordEyeButton.isSelected {
@@ -39,15 +67,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func rememberMeButton(_ sender: UIButton) {
-        checkBoxRememberMeButton.setImage(UIImage(named: "ic-checkbox-unselected"), for: .normal)
         checkBoxRememberMeButton.setImage(UIImage(named: "ic-checkbox-selected"), for: .selected)
         checkBoxRememberMeButton.isSelected.toggle()
-    }
-    
-    func rememberMeChecked(_ authInfo: AuthInfo?) {
-        if checkBoxRememberMeButton.isSelected {
-            AuthStorage.store(authInfo)
-        }
     }
     
     @IBAction func loginButton(_ sender: UIButton) {
@@ -60,23 +81,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         textFieldChackerAndNetworking(urlExtension: "/users")
     }
 
-    func endTextFieldEditing() {
-        emailTextField.endEditing(true)
-        passwordTextField.endEditing(true)
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        endTextFieldEditing()
-    }
-        
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        endTextFieldEditing()
-        return true
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-    }
+}
+
+// MARK: - TextField Checker & networking
+
+extension LoginViewController {
     
     func textFieldChackerAndNetworking(urlExtension: String) {
         let isEmailEmpty = emailTextField.text?.isEmpty ?? true
@@ -90,7 +99,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         /// Email checker
         if isEmailEmpty {
             shake(object: self.emailTextField)
-            shake(object: self.emailLine)
+            shake(object: self.emailLineLabel)
             emailTextField.placeholder = "This field cannot be empty!"
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.7) {
                 self.emailTextField.placeholder = "Email"
@@ -101,7 +110,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         if isPasswordEmpty {
             shake(object: self.passwordTextField)
             shake(object: self.passwordEyeButton)
-            shake(object: self.passwordLine)
+            shake(object: self.passwordLineLabel)
             passwordTextField.placeholder = "This field cannot be empty!"
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.7) {
                 self.passwordTextField.placeholder = "Password"
@@ -112,7 +121,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             pushData(email: email, password: password, urlExtension: urlExtension)
         }
     }
-
+    
     func shake(object: UIView) {
         let animation = CABasicAnimation(keyPath: "position")
         animation.duration = 0.05
@@ -122,10 +131,52 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         animation.toValue = NSValue(cgPoint: CGPoint(x: object.center.x + 5, y: object.center.y))
         object.layer.add(animation, forKey: "position")
     }
+}
+
+// MARK: - Keyboard Functions
+
+extension LoginViewController: UITextFieldDelegate {
+
+    func endTextFieldEditing() {
+        emailTextField.endEditing(true)
+        passwordTextField.endEditing(true)
+    }
     
-    func transitionToHomeVC() {
-        let storyboard = UIStoryboard(name: "Home", bundle: .main)
-        let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-        navigationController?.pushViewController(homeViewController, animated: true)
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        endTextFieldEditing()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        endTextFieldEditing()
+        return true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+}
+
+// MARK: - PopUp Alert
+
+extension LoginViewController {
+    
+    func popupAlert() {
+        let alert = UIAlertController(
+            title: "Login/Register Failure",
+            message: "Wrong account information or trying to register existing user. (Please use 6 or more characters password) Please try again.",
+            preferredStyle: .alert
+        )
+        alert.addAction(
+            UIAlertAction(
+                title: NSLocalizedString("OK", comment: "Default action"),
+                style: .default,
+                handler: { _ in
+                    #if DEBUG
+                    print("The \"OK\" alert occured.")
+                    #endif
+                }
+            )
+        )
+        present(alert, animated: true, completion: nil)
     }
 }

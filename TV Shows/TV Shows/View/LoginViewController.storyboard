@@ -44,7 +44,7 @@
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="____________________________________________________" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afH-zC-kUI">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="________________________________________________________________________________________________________" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afH-zC-kUI">
                                                 <rect key="frame" x="20" y="312" width="335" height="21"/>
                                                 <color key="tintColor" systemColor="labelColor"/>
                                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
@@ -64,7 +64,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="____________________________________________________" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tlA-Px-W26">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="________________________________________________________________________________________________________" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tlA-Px-W26">
                                                 <rect key="frame" x="20" y="362" width="335" height="21"/>
                                                 <color key="tintColor" systemColor="labelColor"/>
                                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
@@ -189,11 +189,11 @@
                     <navigationItem key="navigationItem" id="mZ7-hC-xlu"/>
                     <connections>
                         <outlet property="checkBoxRememberMeButton" destination="01I-XS-hrV" id="09W-wI-uGz"/>
-                        <outlet property="emailLine" destination="afH-zC-kUI" id="XiS-qk-6lg"/>
+                        <outlet property="emailLineLabel" destination="afH-zC-kUI" id="XiS-qk-6lg"/>
                         <outlet property="emailTextField" destination="vc7-uK-YuC" id="uOS-Bz-3YZ"/>
                         <outlet property="loginButton" destination="5l5-y1-Sww" id="oaf-t4-90F"/>
                         <outlet property="passwordEyeButton" destination="gN6-sb-5ty" id="K2n-Zk-e2K"/>
-                        <outlet property="passwordLine" destination="tlA-Px-W26" id="Gnh-aO-ejX"/>
+                        <outlet property="passwordLineLabel" destination="tlA-Px-W26" id="Gnh-aO-ejX"/>
                         <outlet property="passwordTextField" destination="ePv-2a-Ma9" id="S6a-82-oR0"/>
                     </connections>
                 </viewController>

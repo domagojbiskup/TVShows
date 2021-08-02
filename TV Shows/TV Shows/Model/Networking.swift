@@ -10,6 +10,8 @@ import Alamofire
 import Kingfisher
 import SVProgressHUD
 
+// MARK: - Networking
+
 private let baseUrl = "https://tv-shows.infinum.academy"
 private let headers = authCheck()?.headers ?? [:]
 
@@ -17,9 +19,11 @@ private func authCheck() -> AuthInfo? {
     if AuthStorage.load() != nil {
         return AuthStorage.load()
     } else {
-        return AuthTempStorage.storage.authInfo
+        return SessionManager.shared.authInfo
     }
 }
+
+// MARK: - LoginViewController
 
 extension LoginViewController {
     
@@ -40,18 +44,17 @@ extension LoginViewController {
                 encoder: JSONParameterEncoder.default
             )
             .validate()
-            .responseDecodable(of: UsersResponse.self) {
-                [weak self] dataResponse in
+            .responseDecodable(of: UsersResponse.self) { [weak self] dataResponse in
                 guard let self = self else { return }
                 switch dataResponse.result {
                 case .success/*(let response)*/:
                     //                    print("Success: \(response.user.email)")
                     let headers = dataResponse.response?.headers.dictionary ?? [:]
                     let authInfo = try? AuthInfo(headers: headers)
-                    AuthTempStorage.storage.authInfo = authInfo
+                    SessionManager.shared.authInfo = authInfo
                     self.rememberMeChecked(authInfo)
                     SVProgressHUD.dismiss()
-                    self.transitionToHomeVC()
+                    self.transitionToHomeViewController()
                 case .failure (let error):
                     print("Failure: \(error)")
                     SVProgressHUD.dismiss()
@@ -60,6 +63,8 @@ extension LoginViewController {
             }
     }
 }
+
+// MARK: - HomeViewController
 
 extension HomeViewController {
     
@@ -70,12 +75,11 @@ extension HomeViewController {
             .request(
                 baseUrl + urlExtension,
                 method: .get,
-                parameters: ["page": "1", "items": "100"],
+                parameters: ["page": "1", "items": "30"],
                 headers: HTTPHeaders(headers)
             )
             .validate()
-            .responseDecodable(of: ShowsResponse.self) {
-                [weak self] dataResponse in
+            .responseDecodable(of: ShowsResponse.self) { [weak self] dataResponse in
                 guard let self = self else { return }
                 switch dataResponse.result {
                 case .success(let response):
@@ -91,7 +95,9 @@ extension HomeViewController {
     }
 }
 
-extension ShowDetailsVC {
+// MARK: - ShowDetailsViewController
+
+extension ShowDetailsViewController {
     
     func fetchData(urlExtension: String) {
         SVProgressHUD.show()
@@ -104,8 +110,7 @@ extension ShowDetailsVC {
                 headers: HTTPHeaders(headers)
             )
             .validate()
-            .responseDecodable(of: ReviewsResponse.self) {
-                [weak self] dataResponse in
+            .responseDecodable(of: ReviewsResponse.self) { [weak self] dataResponse in
                 guard let self = self else { return }
                 switch dataResponse.result {
                 case .success(let response):
@@ -121,7 +126,9 @@ extension ShowDetailsVC {
     }
 }
 
-extension WriteAReviewVC {
+// MARK: - WriteAReviewViewController
+
+extension WriteAReviewViewController {
     
     func pushData(comment: String, rating: String, showId: String, urlExtension: String) {
         SVProgressHUD.show()
@@ -141,8 +148,7 @@ extension WriteAReviewVC {
                 headers: HTTPHeaders(headers)
             )
             .validate()
-            .responseDecodable(of: ReviewResponse.self) {
-                [weak self] dataResponse in
+            .responseDecodable(of: ReviewResponse.self) { [weak self] dataResponse in
                 guard let self = self else { return }
                 switch dataResponse.result {
                 case .success/*(let response)*/:
@@ -158,8 +164,66 @@ extension WriteAReviewVC {
     }
 }
 
-extension UIImageView {
-    func setImage(imageUrl: String) {
-        self.kf.setImage(with: URL(string: imageUrl))
+// MARK: - MyAccountViewController
+
+extension MyAccountViewController {
+    
+    func fetchData(urlExtension: String) {
+        SVProgressHUD.show()
+        
+        AF
+            .request(
+                baseUrl + urlExtension,
+                method: .get,
+                headers: HTTPHeaders(headers)
+            )
+            .validate()
+            .responseDecodable(of: UsersResponse.self) { [weak self] dataResponse in
+                guard let self = self else { return }
+                switch dataResponse.result {
+                case .success(let response):
+                    //                    print("Success: \(response.user.email)")
+                    self.emailLabel.text = response.user.email
+                    if !(response.user.imageUrl?.isEmpty ?? true) {
+                        self.profilePhoto.setImage(imageUrl: response.user.imageUrl ?? "")
+                    }
+                    SVProgressHUD.dismiss()
+                case .failure(let error):
+                    print("Failure: \(error)")
+                    SVProgressHUD.dismiss()
+                }
+            }
+    }
+    
+    func uploadImage(_ image: UIImage) {
+        guard let imageData = image.jpegData(compressionQuality: 0.9) else { return }
+        
+        let requestData = MultipartFormData()
+        requestData.append(
+            imageData,
+            withName: "image",
+            fileName: "image.jpeg",
+            mimeType: "image/jpeg"
+        )
+        
+        AF
+            .upload(
+                multipartFormData: requestData,
+                to: "https://tv-shows.infinum.academy/users",
+                method: .put,
+                headers: HTTPHeaders(headers)
+            )
+            .validate()
+            .responseDecodable(of: UsersResponse.self) { [weak self] dataResponse in
+                guard let self = self else { return }
+                switch dataResponse.result {
+                case .success:
+                    self.fetchData(urlExtension: "/users/me")
+                    SVProgressHUD.dismiss()
+                case .failure(let error):
+                    print("Failure: \(error)")
+                    SVProgressHUD.dismiss()
+                }
+            }
     }
 }

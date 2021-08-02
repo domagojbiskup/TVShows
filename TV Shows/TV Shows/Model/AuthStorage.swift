@@ -7,10 +7,12 @@
 
 import Foundation
 
-class AuthTempStorage {
+class SessionManager {
 
-    static let storage: AuthTempStorage = AuthTempStorage()
+    static let shared: SessionManager = SessionManager()
     var authInfo: AuthInfo?
+    
+    private init() {}
 }
 
 class AuthStorage {
@@ -37,7 +39,7 @@ class AuthStorage {
         return nil
     }
     
-    static func delete() {
+    static func clear() {
         UserDefaults.standard.removeObject(forKey: "authInfo")
     }
 }

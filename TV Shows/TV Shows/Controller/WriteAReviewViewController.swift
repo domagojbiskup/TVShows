@@ -11,14 +11,14 @@ protocol ReloadData: AnyObject {
 
 import UIKit
 
-class WriteAReviewViewController: UIViewController, UITextFieldDelegate {
+class WriteAReviewViewController: UIViewController {
     
     @IBOutlet weak var star1: UIButton!
     @IBOutlet weak var star2: UIButton!
     @IBOutlet weak var star3: UIButton!
     @IBOutlet weak var star4: UIButton!
     @IBOutlet weak var star5: UIButton!
-    @IBOutlet weak var comment: UITextField!
+    @IBOutlet weak var commentTextField: UITextField!
     @IBOutlet weak var submitButton: UIButton!
     
     private var rating = 0
@@ -30,47 +30,89 @@ class WriteAReviewViewController: UIViewController, UITextFieldDelegate {
         
         submitButton.layer.cornerRadius = 20
         submitButton.layer.masksToBounds = true
-
-        comment.delegate = self
+        
+        commentTextField.delegate = self
     }
     
     @IBAction func closePressed(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
-
+    
     @IBAction func submitPressed(_ sender: UIButton) {
         reviewChecker()
-
+        
         guard
-            let comment = comment.text,
+            let comment = commentTextField.text,
             let showId = showId
         else { return }
-
+        
         if !comment.isEmpty && rating != 0 {
             pushData(comment: "\(comment)", rating: "\(rating)", showId: showId, urlExtension: "/reviews")
         }
     }
+}
 
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        comment.endEditing(true)
+// MARK: - Rating
+
+extension WriteAReviewViewController {
+    
+    @IBAction func star1Button(_ sender: UIButton) {
+        star2.isSelected = false
+        star3.isSelected = false
+        star4.isSelected = false
+        star5.isSelected = false
+        star1.isSelected = true
+        rating = 1
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        comment.endEditing(true)
-        return true
+    @IBAction func star2Button(_ sender: UIButton) {
+        star3.isSelected = false
+        star4.isSelected = false
+        star5.isSelected = false
+        star1.isSelected = true
+        star2.isSelected = true
+        rating = 2
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
+    @IBAction func star3Button(_ sender: UIButton) {
+        star4.isSelected = false
+        star5.isSelected = false
+        star1.isSelected = true
+        star2.isSelected = true
+        star3.isSelected = true
+        rating = 3
     }
+    
+    @IBAction func star4Button(_ sender: UIButton) {
+        star5.isSelected = false
+        star1.isSelected = true
+        star2.isSelected = true
+        star3.isSelected = true
+        star4.isSelected = true
+        rating = 4
+    }
+    
+    @IBAction func star5Button(_ sender: UIButton) {
+        star1.isSelected = true
+        star2.isSelected = true
+        star3.isSelected = true
+        star4.isSelected = true
+        star5.isSelected = true
+        rating = 5
+    }
+}
+
+// MARK: - Review Checker
+
+extension WriteAReviewViewController {
     
     func reviewChecker() {
-        let isCommentEmpty = comment.text?.isEmpty ?? true
+        let isCommentEmpty = commentTextField.text?.isEmpty ?? true
         
         if isCommentEmpty {
-            comment.placeholder = "Type Something!"
+            commentTextField.placeholder = "Type Something!"
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                self.comment.placeholder = "Enter your comment here..."
+                self.commentTextField.placeholder = "Enter your comment here..."
             }
         }
         
@@ -96,49 +138,22 @@ class WriteAReviewViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
+}
 
-    @IBAction func star1Button(_ sender: UIButton) {
-        star2.isSelected = false
-        star3.isSelected = false
-        star4.isSelected = false
-        star5.isSelected = false
-        star1.isSelected = true
-        rating = 1
+// MARK: - Keyboard Functions
+
+extension WriteAReviewViewController: UITextFieldDelegate {
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        commentTextField.endEditing(true)
     }
-
-    @IBAction func star2Button(_ sender: UIButton) {
-        star3.isSelected = false
-        star4.isSelected = false
-        star5.isSelected = false
-        star1.isSelected = true
-        star2.isSelected = true
-        rating = 2
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        commentTextField.endEditing(true)
+        return true
     }
-
-    @IBAction func star3Button(_ sender: UIButton) {
-        star4.isSelected = false
-        star5.isSelected = false
-        star1.isSelected = true
-        star2.isSelected = true
-        star3.isSelected = true
-        rating = 3
-    }
-
-    @IBAction func star4Button(_ sender: UIButton) {
-        star5.isSelected = false
-        star1.isSelected = true
-        star2.isSelected = true
-        star3.isSelected = true
-        star4.isSelected = true
-        rating = 4
-    }
-
-    @IBAction func star5Button(_ sender: UIButton) {
-        star1.isSelected = true
-        star2.isSelected = true
-        star3.isSelected = true
-        star4.isSelected = true
-        star5.isSelected = true
-        rating = 5
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 }

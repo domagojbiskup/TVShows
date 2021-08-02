@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--ShowTitle-->
+        <!--ShowDetailsViewController-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="ShowDetailsVC" id="Y6W-OH-hqX" customClass="ShowDetailsVC" customModule="TV_Shows" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ShowDetailsViewController" title="ShowDetailsViewController" id="Y6W-OH-hqX" customClass="ShowDetailsViewController" customModule="TV_Shows" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -52,7 +52,7 @@
                     <connections>
                         <outlet property="showTitle" destination="uPg-IA-WPu" id="umj-7F-K49"/>
                         <outlet property="tableView" destination="idL-3m-9nv" id="aPg-9W-agM"/>
-                        <outlet property="writeAReview" destination="kdC-ye-bFV" id="zqT-yB-1Mb"/>
+                        <outlet property="writeAReviewButton" destination="kdC-ye-bFV" id="zqT-yB-1Mb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

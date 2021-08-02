@@ -14,12 +14,14 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var topRatedShowsButton: UIButton!
     
     var shows: [Show] = []
+    private var notificationToken: NSObjectProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationController?.setNavigationBarHidden(false, animated: false)
         self.navigationItem.setHidesBackButton(true, animated: false)
+        navigationController?.navigationBar.prefersLargeTitles = true
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -27,24 +29,40 @@ class HomeViewController: UIViewController {
         fetchData(urlExtension: "/shows")
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(notificationToken!)
+    }
+}
+
+// MARK: - IBActions
+    
+extension HomeViewController {
+    
     @IBAction func showsButton(_ sender: UIButton) {
         showsAllButton.isSelected = true
         topRatedShowsButton.isSelected = false
+        self.title = "Shows"
         fetchData(urlExtension: "/shows")
     }
     
     @IBAction func topShowsButton(_ sender: UIButton) {
         topRatedShowsButton.isSelected = true
         showsAllButton.isSelected = false
+        self.title = "Top Rated"
         fetchData(urlExtension: "/shows/top_rated")
     }
     
     @IBAction func MyAccount(_ sender: UIBarButtonItem) {
-        let storyboard = UIStoryboard(name: "MyAccount", bundle: .main)
-        let MyAccountVC = storyboard.instantiateViewController(withIdentifier: "MyAccountVC") as! MyAccountVC
-        navigationController?.pushViewController(MyAccountVC, animated: true)
+        let storyboard = UIStoryboard(name: K.MyAccountViewController, bundle: .main)
+        let myAccountViewController = storyboard.instantiateViewController(withIdentifier: K.MyAccountViewController) as! MyAccountViewController
+        let navigationController = UINavigationController(
+            rootViewController: myAccountViewController
+        )
+        self.present(navigationController, animated: true)
     }
 }
+
+// MARK: - UITableViewDataSource
 
 extension HomeViewController: UITableViewDataSource {
     
@@ -54,20 +72,24 @@ extension HomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(
-            withIdentifier: String(describing: ShowsVCCell.self), for: indexPath
-        ) as! ShowsVCCell
+            withIdentifier: String(describing: HomeTableViewCell.self), for: indexPath
+        ) as! HomeTableViewCell
         cell.showImage.setImage(imageUrl: shows[indexPath.row].imageUrl)
-        cell.showTitle.text = shows[indexPath.row].title
-        
+        cell.showTitleLabel.text = shows[indexPath.row].title
+                
         return cell
     }
 }
 
-class ShowsVCCell: UITableViewCell {
+// MARK: - class HomeTableViewCell: UITableViewCell
+
+class HomeTableViewCell: UITableViewCell {
     
     @IBOutlet weak var showImage: UIImageView!
-    @IBOutlet weak var showTitle: UILabel!
+    @IBOutlet weak var showTitleLabel: UILabel!
 }
+
+// MARK: - UITableViewDelegate
 
 extension HomeViewController: UITableViewDelegate {
     
@@ -75,10 +97,33 @@ extension HomeViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         let show = shows[indexPath.row]
         
-        /// Transition - New VC & Storyboard
-        let storyboard = UIStoryboard(name: "ShowDetails", bundle: .main)
-        let showViewController = storyboard.instantiateViewController(withIdentifier: "ShowDetailsVC") as! ShowDetailsVC
-        showViewController.show = show
-        navigationController?.pushViewController(showViewController, animated: true)
+        /// Transition - New ViewController & Storyboard
+        let storyboard = UIStoryboard(name: K.ShowDetailsViewController, bundle: .main)
+        let showDetailsViewController = storyboard.instantiateViewController(
+            withIdentifier: K.ShowDetailsViewController) as! ShowDetailsViewController
+        showDetailsViewController.show = show
+        navigationController?.pushViewController(showDetailsViewController, animated: true)
+    }
+}
+
+// MARK: - Notifications
+
+extension HomeViewController {
+    
+    func notifications() {
+        notificationToken = NotificationCenter
+            .default
+            .addObserver(
+                forName: K.notificationName,
+                object: nil,
+                queue: nil
+            ) {
+                [weak self] notification in
+                guard let self = self else { return }
+                let storyboard = UIStoryboard(name: K.LoginViewController, bundle: nil)
+                let loginViewController = storyboard.instantiateViewController(
+                    withIdentifier: K.LoginViewController) as! LoginViewController
+                self.navigationController?.setViewControllers([loginViewController], animated: true)
+            }
     }
 }

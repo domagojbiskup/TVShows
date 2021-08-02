@@ -75,7 +75,7 @@ extension HomeViewController {
             .request(
                 baseUrl + urlExtension,
                 method: .get,
-                parameters: ["page": "1", "items": "30"],
+                parameters: ["page": "1", "items": "100"],
                 headers: HTTPHeaders(headers)
             )
             .validate()

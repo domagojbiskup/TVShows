@@ -110,6 +110,15 @@ extension LoginViewController {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.7) {
                 self.passwordTextField.placeholder = "Password"
             }
+        } else if passwordTextField.text?.count ?? 0 < 6 {
+            shake(object: self.passwordTextField)
+            shake(object: self.passwordEyeButton)
+            shake(object: self.passwordLineLabel)
+            passwordTextField.text = ""
+            passwordTextField.placeholder = "Must be at least 6 characters long!"
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.7) {
+                self.passwordTextField.placeholder = "Password"
+            }
         }
         
         if emailTextField.text != "" && passwordTextField.text != "" {
@@ -158,7 +167,7 @@ extension LoginViewController {
     func popupAlert() {
         let alert = UIAlertController(
             title: "Login/Register Failure",
-            message: "Wrong account information or trying to register existing user. (Please use 6 or more characters password) Please try again.",
+            message: "Wrong account information or trying to register existing user. Please try again.",
             preferredStyle: .alert
         )
         alert.addAction(

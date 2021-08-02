@@ -27,7 +27,13 @@ class LoginViewController: UIViewController {
         
         loginButton.layer.cornerRadius = 20
         loginButton.layer.masksToBounds = true
-        }
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(tapAwayDissmissKeyboard)
+        )
+        self.view.addGestureRecognizer(tap)
+    }
     
     func rememberMeChecked(_ authInfo: AuthInfo?) {
         if checkBoxRememberMeButton.isSelected {
@@ -70,7 +76,6 @@ extension LoginViewController {
         endTextFieldEditing()
         textFieldChackerAndNetworking(urlExtension: "/users")
     }
-
 }
 
 // MARK: - TextField Checker & networking
@@ -126,7 +131,7 @@ extension LoginViewController {
 // MARK: - Keyboard Functions
 
 extension LoginViewController: UITextFieldDelegate {
-
+    
     func endTextFieldEditing() {
         emailTextField.endEditing(true)
         passwordTextField.endEditing(true)
@@ -141,7 +146,7 @@ extension LoginViewController: UITextFieldDelegate {
         return true
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    @objc func tapAwayDissmissKeyboard() {
         self.view.endEditing(true)
     }
 }

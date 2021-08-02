@@ -10,7 +10,6 @@ import Foundation
 struct ShowsResponse: Decodable {
     let shows: [Show]
     let meta: Meta
-
 }
 
 struct Show: Decodable {

@@ -32,6 +32,12 @@ class WriteAReviewViewController: UIViewController {
         submitButton.layer.masksToBounds = true
         
         commentTextField.delegate = self
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(tapAwayDissmissKeyboard)
+        )
+        self.view.addGestureRecognizer(tap)
     }
     
     @IBAction func closePressed(_ sender: UIBarButtonItem) {
@@ -153,7 +159,7 @@ extension WriteAReviewViewController: UITextFieldDelegate {
         return true
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    @objc func tapAwayDissmissKeyboard() {
         self.view.endEditing(true)
     }
 }

@@ -49,7 +49,7 @@ extension MyAccountViewController {
         dismiss(animated: true) {
             AuthStorage.clear()
             SessionManager.shared.authInfo = nil
-            NotificationCenter.default.post(K.didLogout)
+            NotificationCenter.default.post(K.Notifications.didLogout)
         }
     }
 }

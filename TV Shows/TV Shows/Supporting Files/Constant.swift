@@ -7,20 +7,24 @@
 
 import Foundation
 
-struct K {
-    /// ViewControllers
-    static let LoginViewController = "LoginViewController"
-    static let HomeViewController = "HomeViewController"
-    static let MyAccountViewController = "MyAccountViewController"
-    static let ShowDetailsViewController = "ShowDetailsViewController"
-    static let WriteAReviewViewController = "WriteAReviewViewController"
-
-    /// Cells
-    static let ShowBasicInfoTableCell = "ShowBasicInfoTableCell"
-    static let ShowReviewTableCell = "ShowReviewTableCell"
+enum K {
+    enum ViewControllers {
+        static let LoginViewController = "LoginViewController"
+        static let HomeViewController = "HomeViewController"
+        static let MyAccountViewController = "MyAccountViewController"
+        static let ShowDetailsViewController = "ShowDetailsViewController"
+        static let WriteAReviewViewController = "WriteAReviewViewController"
+    }
     
-    /// Notifications
-    static let notificationName = Notification.Name(rawValue: "didLogout")
-    static let didLogout = Notification(name: notificationName)
-    static let logout = "didLogout"
+    enum Cell {
+        static let HomeViewControllerCell = "HomeViewControllerCell"
+        static let ShowBasicInfoTableCell = "ShowBasicInfoTableCell"
+        static let ShowReviewTableCell = "ShowReviewTableCell"
+    }
+    
+    enum Notifications {
+        static let notificationName = Notification.Name(rawValue: "didLogout")
+        static let didLogout = Notification(name: notificationName)
+        static let logout = "didLogout"
+    }
 }

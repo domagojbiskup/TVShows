@@ -27,17 +27,7 @@ class LoginViewController: UIViewController {
         
         loginButton.layer.cornerRadius = 20
         loginButton.layer.masksToBounds = true
-        
-//        UIResponder.keyboardWillShowNotification
-//        UIResponder.keyboardWillHideNotification
-//
-//       guard
-//         let value = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as?
-//       NSValue
-//       else { return
-//       }
-//       let height = value.cgRectValue.size.height
-    }
+        }
     
     func rememberMeChecked(_ authInfo: AuthInfo?) {
         if checkBoxRememberMeButton.isSelected {
@@ -46,9 +36,9 @@ class LoginViewController: UIViewController {
     }
     
     func transitionToHomeViewController() {
-        let storyboard = UIStoryboard(name: K.HomeViewController, bundle: .main)
+        let storyboard = UIStoryboard(name: K.ViewControllers.HomeViewController, bundle: .main)
         let homeViewController = storyboard.instantiateViewController(
-            withIdentifier: K.HomeViewController) as! HomeViewController
+            withIdentifier: K.ViewControllers.HomeViewController) as! HomeViewController
         navigationController?.pushViewController(homeViewController, animated: true)
     }
 }

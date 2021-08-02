@@ -20,8 +20,7 @@ class ShowDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //        navigationController?.navigationBar.prefersLargeTitles = true
-        //        navigationItem.backBarButtonItem?.tintColor = #colorLiteral(red: 0.3215686275, green: 0.2117647059, blue: 0.5490196078, alpha: 1)
+        navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.3215686275, green: 0.2117647059, blue: 0.5490196078, alpha: 1)
         
         writeAReviewButton.layer.cornerRadius = 20
         writeAReviewButton.layer.masksToBounds = true
@@ -30,9 +29,9 @@ class ShowDetailsViewController: UIViewController {
         fetchData(urlExtension: "/shows/\(show?.id ?? "")/reviews/")
         showTitle.title = show?.title
         
-        self.tableView.register(UINib(nibName: K.ShowBasicInfoTableCell, bundle: nil),
+        self.tableView.register(UINib(nibName: K.Cell.ShowBasicInfoTableCell, bundle: nil),
                                 forCellReuseIdentifier: String(describing: ShowBasicInfoTableCell.self))
-        self.tableView.register(UINib(nibName: K.ShowReviewTableCell, bundle: nil),
+        self.tableView.register(UINib(nibName: K.Cell.ShowReviewTableCell, bundle: nil),
                                 forCellReuseIdentifier: String(describing: ShowReviewTableCell.self))
         
         self.tableView.refreshControl = UIRefreshControl()
@@ -50,9 +49,9 @@ class ShowDetailsViewController: UIViewController {
     }
     
     @IBAction func WriteAReview(_ sender: UIButton) {
-        let storyboard = UIStoryboard(name: K.WriteAReviewViewController, bundle: .main)
+        let storyboard = UIStoryboard(name: K.ViewControllers.WriteAReviewViewController, bundle: .main)
         let writeAReviewViewController = storyboard.instantiateViewController(
-            withIdentifier: K.WriteAReviewViewController)
+            withIdentifier: K.ViewControllers.WriteAReviewViewController)
             as! WriteAReviewViewController
         
         writeAReviewViewController.showId = show?.id

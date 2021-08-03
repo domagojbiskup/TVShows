@@ -43,3 +43,4 @@ class AuthStorage {
         UserDefaults.standard.removeObject(forKey: "authInfo")
     }
 }
+

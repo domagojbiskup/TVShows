@@ -21,7 +21,7 @@ class MyAccountViewController: UIViewController {
         profilePhoto.layer.borderWidth = 3
         profilePhoto.layer.masksToBounds = false
         profilePhoto.layer.borderColor = #colorLiteral(red: 0.3215686275, green: 0.2117647059, blue: 0.5490196078, alpha: 1)
-        profilePhoto.layer.cornerRadius = profilePhoto.frame.height/2
+        profilePhoto.layer.cornerRadius = profilePhoto.frame.height / 2
         profilePhoto.clipsToBounds = true
         profilePhoto.contentMode = .scaleAspectFill
         
@@ -69,3 +69,5 @@ extension MyAccountViewController: UIImagePickerControllerDelegate, UINavigation
         picker.dismiss(animated: true, completion: nil)
     }
 }
+
+

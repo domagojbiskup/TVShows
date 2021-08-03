@@ -6,18 +6,21 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var showsAllButton: UIButton!
-    @IBOutlet weak var topRatedShowsButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var shows: [Show] = []
+    var showsPagesNumber = 1
+    var showsCurrentPage = 1
     private var notificationToken: NSObjectProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        SVProgressHUD.show()
         
         navigationController?.setNavigationBarHidden(false, animated: false)
         self.navigationItem.setHidesBackButton(true, animated: false)
@@ -26,7 +29,7 @@ class HomeViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-        fetchData(urlExtension: "/shows")
+        fetchData(showsCurrentPage, urlExtension: "/shows")
         
         notifications()
         
@@ -46,25 +49,6 @@ class HomeViewController: UIViewController {
         if let notificationToken = notificationToken {
             NotificationCenter.default.removeObserver(notificationToken)
         }
-    }
-}
-
-// MARK: - IBActions
-
-extension HomeViewController {
-    
-    @IBAction func showsButton(_ sender: UIButton) {
-        showsAllButton.isSelected = true
-        topRatedShowsButton.isSelected = false
-        self.title = "Shows"
-        fetchData(urlExtension: "/shows")
-    }
-    
-    @IBAction func topShowsButton(_ sender: UIButton) {
-        topRatedShowsButton.isSelected = true
-        showsAllButton.isSelected = false
-        self.title = "Top Rated"
-        fetchData(urlExtension: "/shows/top_rated")
     }
     
     @IBAction func MyAccount(_ sender: UIBarButtonItem) {
@@ -93,6 +77,13 @@ extension HomeViewController: UITableViewDataSource {
         cell.showTitleLabel.text = shows[indexPath.row].title
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if showsCurrentPage < showsPagesNumber && indexPath.row == shows.count - 1 {
+            showsCurrentPage += 1
+            fetchData(showsCurrentPage, urlExtension: "/shows")
+        }
     }
 }
 

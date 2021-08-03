@@ -20,11 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if authInfo != nil {
             let storyboard = UIStoryboard(name: "HomeViewController", bundle: .main)
-            let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+            let homeViewController = storyboard.instantiateViewController(
+                withIdentifier: "HomeViewController") as! HomeViewController
             navigationController.viewControllers = [homeViewController]
         } else {
             let storyboard = UIStoryboard(name: "LoginViewController", bundle: .main)
-            let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+            let loginViewController = storyboard.instantiateViewController(
+                withIdentifier: "LoginViewController") as! LoginViewController
             navigationController.viewControllers = [loginViewController]
         }
         /// Sets the navigation controller as starting point of the app
@@ -33,3 +35,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 }
+
+

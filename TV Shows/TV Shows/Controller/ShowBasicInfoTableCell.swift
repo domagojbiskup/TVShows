@@ -69,3 +69,5 @@ class ShowBasicInfoTableCell: UITableViewCell {
         }
     }
 }
+
+

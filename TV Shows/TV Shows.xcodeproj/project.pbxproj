@@ -156,8 +156,8 @@
 			isa = PBXGroup;
 			children = (
 				42E996BE26AC4D4400CD2B9A /* Model */,
-				423D4C4F2698E51E0098B462 /* Controller */,
 				42E996C126AC50C300CD2B9A /* View */,
+				423D4C4F2698E51E0098B462 /* Controller */,
 				42E996C226AC50F400CD2B9A /* Supporting Files */,
 			);
 			path = "TV Shows";

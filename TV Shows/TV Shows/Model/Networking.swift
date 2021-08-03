@@ -68,14 +68,14 @@ extension LoginViewController {
 
 extension HomeViewController {
     
-    func fetchData (urlExtension: String) {
-        SVProgressHUD.show()
+    func fetchData (_ showsCurrentPage: Int, urlExtension: String) {
+        activityIndicator.startAnimating()
         
         AF
             .request(
                 baseUrl + urlExtension,
                 method: .get,
-                parameters: ["page": "1", "items": "100"],
+                parameters: ["page": "\(showsCurrentPage)", "items": "20"],
                 headers: HTTPHeaders(headers)
             )
             .validate()
@@ -84,12 +84,16 @@ extension HomeViewController {
                 switch dataResponse.result {
                 case .success(let response):
                     //                    print("Success: \(response)")
-                    self.shows = response.shows
+                    self.showsCurrentPage = response.meta.pagination.page
+                    self.showsPagesNumber = response.meta.pagination.pages
+                    self.shows.append(contentsOf: response.shows)
                     self.tableView.reloadData()
                     SVProgressHUD.dismiss()
+                    self.activityIndicator.stopAnimating()
                 case .failure (let error):
                     print("Failure: \(error)")
                     SVProgressHUD.dismiss()
+                    self.activityIndicator.stopAnimating()
                 }
             }
     }
@@ -99,14 +103,14 @@ extension HomeViewController {
 
 extension ShowDetailsViewController {
     
-    func fetchData(urlExtension: String) {
-        SVProgressHUD.show()
+    func fetchData(_ reviewsCurrentPage: Int, urlExtension: String) {
+        activityIndicator.startAnimating()
         
         AF
             .request(
                 baseUrl + urlExtension,
                 method: .get,
-                parameters: ["page": "1", "items": "100"],
+                parameters: ["page": "\(reviewsCurrentPage)", "items": "20"],
                 headers: HTTPHeaders(headers)
             )
             .validate()
@@ -115,12 +119,16 @@ extension ShowDetailsViewController {
                 switch dataResponse.result {
                 case .success(let response):
                     //                    print("Success: \(response)")
-                    self.reviews = response.reviews
+                    self.reviewsCurrentPage = response.meta.pagination.page
+                    self.reviewsPagesNumber = response.meta.pagination.pages
+                    self.reviews.append(contentsOf: response.reviews)
                     self.tableView.reloadData()
                     SVProgressHUD.dismiss()
+                    self.activityIndicator.stopAnimating()
                 case .failure(let error):
                     print("Failure: \(error)")
                     SVProgressHUD.dismiss()
+                    self.activityIndicator.stopAnimating()
                 }
             }
     }
@@ -227,3 +235,5 @@ extension MyAccountViewController {
             }
     }
 }
+
+

@@ -18,8 +18,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8zg-2b-ssY">
-                                <rect key="frame" x="0.0" y="88" width="414" height="699"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <activityIndicatorView key="tableFooterView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" id="hVC-zT-6yz">
+                                    <rect key="frame" x="0.0" y="169.00000034679067" width="414" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </activityIndicatorView>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="HomeViewControllerCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HomeViewControllerCell" rowHeight="120" id="shL-4g-CW3" customClass="HomeTableViewCell" customModule="TV_Shows" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="24.5" width="414" height="120"/>
@@ -59,57 +63,14 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="TiC-cH-evb">
-                                <rect key="frame" x="0.0" y="787" width="414" height="75"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FyG-aO-IiN">
-                                        <rect key="frame" x="0.0" y="0.0" width="207" height="75"/>
-                                        <state key="normal" title="Shows" image="ic-show-deselected">
-                                            <color key="titleColor" systemColor="secondaryLabelColor"/>
-                                        </state>
-                                        <state key="selected" title="Shows" image="ic-show-selected">
-                                            <color key="titleColor" red="0.32156862745098036" green="0.21176470588235294" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="showsButton:" destination="hoD-yg-F7q" eventType="touchUpInside" id="cAr-uh-r5x"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mtH-NF-yba">
-                                        <rect key="frame" x="207" y="0.0" width="207" height="75"/>
-                                        <state key="normal" title="Top Rated" image="ic-star-deselected">
-                                            <color key="titleColor" systemColor="secondaryLabelColor"/>
-                                        </state>
-                                        <state key="selected" title="Top Rated" image="ic-star-selected">
-                                            <color key="titleColor" red="0.32156862749999998" green="0.21176470589999999" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="topShowsButton:" destination="hoD-yg-F7q" eventType="touchUpInside" id="QWW-qQ-KFM"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="mtH-NF-yba" firstAttribute="top" secondItem="TiC-cH-evb" secondAttribute="top" id="0qw-Yk-Rf7"/>
-                                    <constraint firstItem="FyG-aO-IiN" firstAttribute="leading" secondItem="TiC-cH-evb" secondAttribute="leading" id="ABz-Za-cMg"/>
-                                    <constraint firstAttribute="bottom" secondItem="FyG-aO-IiN" secondAttribute="bottom" id="Mbe-lh-FXZ"/>
-                                    <constraint firstAttribute="height" constant="75" id="Vjl-os-PFK"/>
-                                    <constraint firstItem="FyG-aO-IiN" firstAttribute="top" secondItem="TiC-cH-evb" secondAttribute="top" id="Xf8-y7-byo"/>
-                                    <constraint firstAttribute="trailing" secondItem="mtH-NF-yba" secondAttribute="trailing" id="hgx-l1-f1d"/>
-                                    <constraint firstItem="mtH-NF-yba" firstAttribute="leading" secondItem="FyG-aO-IiN" secondAttribute="trailing" id="jcx-DW-MmV"/>
-                                    <constraint firstAttribute="bottom" secondItem="mtH-NF-yba" secondAttribute="bottom" id="per-vY-DHT"/>
-                                    <constraint firstItem="mtH-NF-yba" firstAttribute="leading" secondItem="FyG-aO-IiN" secondAttribute="trailing" id="uZT-qh-tSq"/>
-                                </constraints>
-                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="weL-R2-C1F"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="weL-R2-C1F" firstAttribute="trailing" secondItem="8zg-2b-ssY" secondAttribute="trailing" id="56c-be-uf4"/>
-                            <constraint firstItem="TiC-cH-evb" firstAttribute="leading" secondItem="weL-R2-C1F" secondAttribute="leading" id="CBZ-zo-Do5"/>
-                            <constraint firstItem="TiC-cH-evb" firstAttribute="top" secondItem="8zg-2b-ssY" secondAttribute="bottom" id="Ks4-5i-k47"/>
-                            <constraint firstItem="weL-R2-C1F" firstAttribute="trailing" secondItem="TiC-cH-evb" secondAttribute="trailing" id="Ksr-uN-Z05"/>
-                            <constraint firstItem="weL-R2-C1F" firstAttribute="bottom" secondItem="TiC-cH-evb" secondAttribute="bottom" id="XzF-ds-gpQ"/>
-                            <constraint firstItem="8zg-2b-ssY" firstAttribute="leading" secondItem="weL-R2-C1F" secondAttribute="leading" id="aH1-wS-Pha"/>
-                            <constraint firstItem="8zg-2b-ssY" firstAttribute="top" secondItem="weL-R2-C1F" secondAttribute="top" id="nKw-mK-Q8Z"/>
+                            <constraint firstItem="weL-R2-C1F" firstAttribute="bottom" secondItem="8zg-2b-ssY" secondAttribute="bottom" id="3xj-ib-KKo"/>
+                            <constraint firstItem="8zg-2b-ssY" firstAttribute="trailing" secondItem="weL-R2-C1F" secondAttribute="trailing" id="6C0-yM-f2p"/>
+                            <constraint firstItem="8zg-2b-ssY" firstAttribute="top" secondItem="weL-R2-C1F" secondAttribute="top" id="Gvn-Sz-V3T"/>
+                            <constraint firstItem="8zg-2b-ssY" firstAttribute="leading" secondItem="weL-R2-C1F" secondAttribute="leading" id="QML-Wm-sa3"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Shows" id="0dZ-Oc-827">
@@ -121,9 +82,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="showsAllButton" destination="FyG-aO-IiN" id="yoW-G6-Av3"/>
+                        <outlet property="activityIndicator" destination="hVC-zT-6yz" id="MRY-JB-cBK"/>
                         <outlet property="tableView" destination="8zg-2b-ssY" id="Y44-Fa-fxe"/>
-                        <outlet property="topRatedShowsButton" destination="mtH-NF-yba" id="Pme-I4-s8O"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F2h-uB-o5F" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -153,14 +113,7 @@
     <color key="tintColor" red="0.32156862749999998" green="0.21176470589999999" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
         <image name="ic-profile" width="24" height="24"/>
-        <image name="ic-show-deselected" width="24" height="24"/>
         <image name="ic-show-placeholder-vertical" width="64" height="90"/>
-        <image name="ic-show-selected" width="24" height="24"/>
-        <image name="ic-star-deselected" width="24" height="24"/>
-        <image name="ic-star-selected" width="24" height="24"/>
-        <systemColor name="secondaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

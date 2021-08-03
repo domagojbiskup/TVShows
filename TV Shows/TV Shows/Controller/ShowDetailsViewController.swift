@@ -6,19 +6,24 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class ShowDetailsViewController: UIViewController {
     
     @IBOutlet weak var showTitle: UINavigationItem!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var writeAReviewButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var show: Show?
     var user: User?
     var reviews: [Review] = []
+    var reviewsCurrentPage = 1
+    var reviewsPagesNumber = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        SVProgressHUD.show()
         
         navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.3215686275, green: 0.2117647059, blue: 0.5490196078, alpha: 1)
         
@@ -26,7 +31,7 @@ class ShowDetailsViewController: UIViewController {
         writeAReviewButton.layer.masksToBounds = true
         
         tableView.dataSource = self
-        fetchData(urlExtension: "/shows/\(show?.id ?? "")/reviews/")
+        fetchData(reviewsCurrentPage, urlExtension: "/shows/\(show?.id ?? "")/reviews/")
         showTitle.title = show?.title
         
         self.tableView.register(UINib(nibName: K.Cell.ShowBasicInfoTableCell, bundle: nil),
@@ -41,7 +46,8 @@ class ShowDetailsViewController: UIViewController {
     }
     
     @objc private func pullToRefresh() {
-        fetchData(urlExtension: "/shows/\(show?.id ?? "")/reviews/")
+        reviewsCurrentPage = 1
+        fetchData(reviewsCurrentPage, urlExtension: "/shows/\(show?.id ?? "")/reviews/")
         
         DispatchQueue.main.async {
             self.tableView.refreshControl?.endRefreshing()
@@ -96,6 +102,10 @@ extension ShowDetailsViewController: UITableViewDataSource {
             reviewCell.rating(rating: review.rating)
             reviewCell.reviewLabel.text = review.comment
             
+            if reviewsCurrentPage < reviewsPagesNumber && indexPath.row == reviews.count - 1 {
+                reviewsCurrentPage += 1
+                fetchData(reviewsCurrentPage, urlExtension: "/shows/\(show?.id ?? "")/reviews/")
+            }
             return reviewCell
         }
     }
@@ -104,7 +114,7 @@ extension ShowDetailsViewController: UITableViewDataSource {
         profileImage.layer.borderWidth = 2
         profileImage.layer.masksToBounds = false
         profileImage.layer.borderColor = #colorLiteral(red: 0.3215686275, green: 0.2117647059, blue: 0.5490196078, alpha: 1)
-        profileImage.layer.cornerRadius = profileImage.frame.height/2
+        profileImage.layer.cornerRadius = profileImage.frame.height / 2
         profileImage.clipsToBounds = true
         profileImage.contentMode = .scaleAspectFill
     }
@@ -114,6 +124,7 @@ extension ShowDetailsViewController: UITableViewDataSource {
 
 extension ShowDetailsViewController: ReloadData {
     func reloadData() {
-        fetchData(urlExtension: "/shows/\(show?.id ?? "")/reviews/")
+        reviewsCurrentPage = 1
+        fetchData(reviewsCurrentPage, urlExtension: "/shows/\(show?.id ?? "")/reviews/")
     }
 }

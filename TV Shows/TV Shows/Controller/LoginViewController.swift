@@ -33,6 +33,19 @@ class LoginViewController: UIViewController {
             action: #selector(tapAwayDissmissKeyboard)
         )
         self.view.addGestureRecognizer(tap)
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(LoginViewController.keyboardWillShow(notification:)),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(LoginViewController.keyboardWillHide(notification:)),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
     }
     
     func rememberMeChecked(_ authInfo: AuthInfo?) {
@@ -157,6 +170,27 @@ extension LoginViewController: UITextFieldDelegate {
     
     @objc func tapAwayDissmissKeyboard() {
         self.view.endEditing(true)
+    }
+    
+    // MARK: Keyboard Layout Auto-Slider
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        guard let userInfo = notification.userInfo else { return }
+        guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as?
+                NSValue else { return }
+        let keyboardFrame = keyboardSize.cgRectValue
+        let keyboardHeight = keyboardFrame.size.height
+        if keyboardHeight < 200 {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardFrame.height
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: Notification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
     }
 }
 

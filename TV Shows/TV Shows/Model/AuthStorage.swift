@@ -8,7 +8,7 @@
 import Foundation
 
 class SessionManager {
-
+    
     static let shared: SessionManager = SessionManager()
     var authInfo: AuthInfo?
     
@@ -16,7 +16,7 @@ class SessionManager {
 }
 
 class AuthStorage {
-
+    
     static func tempStore(_ authInfo: AuthInfo?) -> AuthInfo? {
         return authInfo
     }

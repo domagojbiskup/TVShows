@@ -19,7 +19,7 @@ struct Show: Decodable {
     let description: String?
     let noOfReviews: Int
     let averageRating: Double?
-
+    
     enum CodingKeys: String, CodingKey {
         case id
         case title

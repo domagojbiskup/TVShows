@@ -31,7 +31,7 @@ class MyAccountViewController: UIViewController {
 }
 
 // MARK: - IBActions
-   
+
 extension MyAccountViewController {
     @IBAction func changeProfilePhotoButtonPressed(_ sender: UIButton) {
         let picker = UIImagePickerController()

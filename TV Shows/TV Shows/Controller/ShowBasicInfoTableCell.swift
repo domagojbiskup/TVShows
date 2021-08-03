@@ -8,7 +8,7 @@
 import UIKit
 
 class ShowBasicInfoTableCell: UITableViewCell {
-
+    
     @IBOutlet weak var showImage: UIImageView!
     @IBOutlet weak var showDescriptionLabel: UILabel!
     @IBOutlet weak var numOfReviewsLabel: UILabel!
@@ -22,7 +22,7 @@ class ShowBasicInfoTableCell: UITableViewCell {
     @IBOutlet weak var star3: UIButton!
     @IBOutlet weak var star4: UIButton!
     @IBOutlet weak var star5: UIButton!
-        
+    
     func noReviewsYet(noOfRevs: Int) {
         if noOfRevs == 0 {
             numOfReviewsLabel.isHidden = true
@@ -31,8 +31,8 @@ class ShowBasicInfoTableCell: UITableViewCell {
             averageLabel.isHidden = true
             view.isHidden = true
             noReviewsYetLabel.isHidden = false
+        }
     }
-}
     
     func rating(rating: Double) {
         switch rating {

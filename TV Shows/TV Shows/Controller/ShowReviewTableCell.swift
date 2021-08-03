@@ -8,7 +8,7 @@
 import UIKit
 
 class ShowReviewTableCell: UITableViewCell {
-
+    
     @IBOutlet weak var reviewerProfileImage: UIImageView!
     @IBOutlet weak var reviewerEmailLabel: UILabel!
     @IBOutlet weak var star1: UIButton!
@@ -17,7 +17,7 @@ class ShowReviewTableCell: UITableViewCell {
     @IBOutlet weak var star4: UIButton!
     @IBOutlet weak var star5: UIButton!
     @IBOutlet weak var reviewLabel: UILabel!
-     
+    
     func rating(rating: Int) {
         switch rating {
         case 0:

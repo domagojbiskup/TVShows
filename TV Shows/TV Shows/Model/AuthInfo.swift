@@ -29,7 +29,7 @@ struct AuthInfo: Codable {
         let decoder = JSONDecoder()
         self = try decoder.decode(Self.self, from: data)
     }
-
+    
     var headers: [String: String] {
         do {
             let data = try JSONEncoder().encode(self)
@@ -39,5 +39,4 @@ struct AuthInfo: Codable {
             return [:]
         }
     }
- }
-
+}

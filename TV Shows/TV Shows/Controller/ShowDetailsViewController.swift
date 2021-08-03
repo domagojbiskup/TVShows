@@ -97,6 +97,9 @@ extension ShowDetailsViewController: UITableViewDataSource {
             
             let review = reviews[indexPath.row - 1]
             reviewCell.reviewerProfileImage.setImage(imageUrl: review.user.imageUrl ?? "")
+            if review.user.imageUrl == nil {
+                reviewCell.reviewerProfileImage.image = UIImage(named: "ic-profile")
+            }
             makeImageRounded(reviewCell.reviewerProfileImage)
             reviewCell.reviewerEmailLabel.text = review.user.email
             reviewCell.rating(rating: review.rating)
@@ -128,3 +131,4 @@ extension ShowDetailsViewController: ReloadData {
         fetchData(reviewsCurrentPage, urlExtension: "/shows/\(show?.id ?? "")/reviews/")
     }
 }
+

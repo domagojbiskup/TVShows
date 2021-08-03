@@ -46,6 +46,7 @@ class ShowDetailsViewController: UIViewController {
     }
     
     @objc private func pullToRefresh() {
+        reviews = []
         reviewsCurrentPage = 1
         fetchData(reviewsCurrentPage, urlExtension: "/shows/\(show?.id ?? "")/reviews/")
         
@@ -127,8 +128,8 @@ extension ShowDetailsViewController: UITableViewDataSource {
 
 extension ShowDetailsViewController: ReloadData {
     func reloadData() {
+        reviews = []
         reviewsCurrentPage = 1
         fetchData(reviewsCurrentPage, urlExtension: "/shows/\(show?.id ?? "")/reviews/")
     }
 }
-

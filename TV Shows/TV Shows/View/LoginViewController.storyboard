@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R63-3h-uXU">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="650"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="600"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash-top-left" translatesAutoresizingMaskIntoConstraints="NO" id="2ad-5a-Mz3">
                                                 <rect key="frame" x="0.0" y="0.0" width="140" height="100"/>
@@ -141,7 +141,7 @@
                                             <constraint firstItem="gN6-sb-5ty" firstAttribute="top" secondItem="afH-zC-kUI" secondAttribute="bottom" constant="15" id="FNk-A1-bhz"/>
                                             <constraint firstItem="vc7-uK-YuC" firstAttribute="top" secondItem="vx2-Yd-MCp" secondAttribute="bottom" constant="30" id="L59-hT-pSn"/>
                                             <constraint firstAttribute="trailing" secondItem="P0Y-sI-wrs" secondAttribute="trailing" id="NRM-WN-kt1"/>
-                                            <constraint firstAttribute="height" constant="650" id="Oht-lF-h1j"/>
+                                            <constraint firstAttribute="height" constant="600" id="Oht-lF-h1j"/>
                                             <constraint firstItem="vx2-Yd-MCp" firstAttribute="leading" secondItem="R63-3h-uXU" secondAttribute="leading" constant="20" id="Q8b-Nm-cgP"/>
                                             <constraint firstAttribute="trailing" secondItem="ePv-2a-Ma9" secondAttribute="trailing" constant="25" id="VA2-J3-Y41"/>
                                             <constraint firstItem="tlA-Px-W26" firstAttribute="leading" secondItem="R63-3h-uXU" secondAttribute="leading" constant="20" id="WsP-zU-LJ1"/>

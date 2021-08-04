@@ -21,6 +21,8 @@ class ShowDetailsViewController: UIViewController {
     var reviewsCurrentPage = 1
     var reviewsPagesNumber = 1
     
+    var fetchInProgress: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         SVProgressHUD.show()

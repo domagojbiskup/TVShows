@@ -17,8 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8zg-2b-ssY">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" contentInsetAdjustmentBehavior="always" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8zg-2b-ssY">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <activityIndicatorView key="tableFooterView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" id="hVC-zT-6yz">
                                     <rect key="frame" x="0.0" y="169.00000034679067" width="414" height="44"/>
@@ -69,7 +69,7 @@
                         <constraints>
                             <constraint firstItem="weL-R2-C1F" firstAttribute="bottom" secondItem="8zg-2b-ssY" secondAttribute="bottom" id="3xj-ib-KKo"/>
                             <constraint firstItem="8zg-2b-ssY" firstAttribute="trailing" secondItem="weL-R2-C1F" secondAttribute="trailing" id="6C0-yM-f2p"/>
-                            <constraint firstItem="8zg-2b-ssY" firstAttribute="top" secondItem="weL-R2-C1F" secondAttribute="top" id="Gvn-Sz-V3T"/>
+                            <constraint firstItem="8zg-2b-ssY" firstAttribute="top" secondItem="eTe-zB-sfs" secondAttribute="top" id="Gvn-Sz-V3T"/>
                             <constraint firstItem="8zg-2b-ssY" firstAttribute="leading" secondItem="weL-R2-C1F" secondAttribute="leading" id="QML-Wm-sa3"/>
                         </constraints>
                     </view>
@@ -89,25 +89,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F2h-uB-o5F" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="15.942028985507248" y="-230.35714285714283"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="ubM-uZ-Kbe">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cET-iu-Sth" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="dRC-vE-UHk">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="0.32156862749999998" green="0.21176470589999999" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="hoD-yg-F7q" kind="relationship" relationship="rootViewController" id="k8x-eC-lMN"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="n2c-wq-ZMz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-894.20289855072474" y="-230.35714285714283"/>
         </scene>
     </scenes>
     <color key="tintColor" red="0.32156862749999998" green="0.21176470589999999" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

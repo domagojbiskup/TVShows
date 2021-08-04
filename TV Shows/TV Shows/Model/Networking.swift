@@ -104,8 +104,10 @@ extension HomeViewController {
 extension ShowDetailsViewController {
     
     func fetchData(_ reviewsCurrentPage: Int, urlExtension: String) {
+        if fetchInProgress { return }
         activityIndicator.startAnimating()
         
+        fetchInProgress = true
         AF
             .request(
                 baseUrl + urlExtension,
@@ -116,6 +118,7 @@ extension ShowDetailsViewController {
             .validate()
             .responseDecodable(of: ReviewsResponse.self) { [weak self] dataResponse in
                 guard let self = self else { return }
+                self.fetchInProgress = false
                 switch dataResponse.result {
                 case .success(let response):
                     //                    print("Success: \(response)")

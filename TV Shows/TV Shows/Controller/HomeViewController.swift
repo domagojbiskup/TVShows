@@ -21,11 +21,6 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         SVProgressHUD.show()
-        
-        navigationController?.setNavigationBarHidden(false, animated: false)
-        self.navigationItem.setHidesBackButton(true, animated: false)
-        navigationController?.navigationBar.prefersLargeTitles = true
-        
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -43,6 +38,15 @@ class HomeViewController: UIViewController {
             name: UIResponder.keyboardWillHideNotification,
             object: nil
         )
+        
+        navigationItem.largeTitleDisplayMode = .always
+        navigationItem.setHidesBackButton(true, animated: false)
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     deinit {

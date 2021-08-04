@@ -8,6 +8,9 @@
 import Foundation
 
 enum K {
+    enum API {
+        static let baseUrl = "https://tv-shows.infinum.academy"
+    }
     enum ViewControllers {
         static let LoginViewController = "LoginViewController"
         static let HomeViewController = "HomeViewController"

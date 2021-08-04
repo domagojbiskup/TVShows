@@ -12,7 +12,6 @@ import SVProgressHUD
 
 // MARK: - Networking
 
-private let baseUrl = "https://tv-shows.infinum.academy"
 private let headers = authCheck()?.headers ?? [:]
 
 private func authCheck() -> AuthInfo? {
@@ -38,7 +37,7 @@ extension LoginViewController {
         
         AF
             .request(
-                baseUrl + urlExtension,
+                K.API.baseUrl + urlExtension,
                 method: .post,
                 parameters: params,
                 encoder: JSONParameterEncoder.default
@@ -73,7 +72,7 @@ extension HomeViewController {
         
         AF
             .request(
-                baseUrl + urlExtension,
+                K.API.baseUrl + urlExtension,
                 method: .get,
                 parameters: ["page": "\(showsCurrentPage)", "items": "20"],
                 headers: HTTPHeaders(headers)
@@ -110,7 +109,7 @@ extension ShowDetailsViewController {
         fetchInProgress = true
         AF
             .request(
-                baseUrl + urlExtension,
+                K.API.baseUrl + urlExtension,
                 method: .get,
                 parameters: ["page": "\(reviewsCurrentPage)", "items": "20"],
                 headers: HTTPHeaders(headers)
@@ -152,7 +151,7 @@ extension WriteAReviewViewController {
         
         AF
             .request(
-                baseUrl + urlExtension,
+                K.API.baseUrl + urlExtension,
                 method: .post,
                 parameters: params,
                 encoder: JSONParameterEncoder.default,
@@ -184,7 +183,7 @@ extension MyAccountViewController {
         
         AF
             .request(
-                baseUrl + urlExtension,
+                K.API.baseUrl + urlExtension,
                 method: .get,
                 headers: HTTPHeaders(headers)
             )
